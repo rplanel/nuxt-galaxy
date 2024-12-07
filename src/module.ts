@@ -1,66 +1,143 @@
-import { defineNuxtModule, addPlugin, createResolver, addServerHandler, addServerScanDir, addServerImportsDir } from '@nuxt/kit'
+import { addComponent, addImportsDir, addServerHandler, addServerImportsDir, addServerPlugin, createResolver, defineNuxtModule } from '@nuxt/kit'
 import { defu } from 'defu'
 
-export * from './types'
-
-// Module options TypeScript interface definition
 export interface ModuleOptions {
-  /**
-   * A FQDN or IP for a given instance of Galaxy
-   * @default process.env.GALAXY_URL
-   * @example 'http://localhost:9000'
-   * @type string
-   */
-  url: string
-
-  /**
-   * User’s API key for the given instance of Galaxy, obtained from the user preferences.
-   * @default process.env.GALAXY_API_KEY
-   * @type string
-   */
-  apiKey: string
+  galaxy: {
+    url: string
+    apiKey: string
+    email: string
+  }
 }
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
-    name: 'my-module',
+    // Usually the npm package name of your module
+    name: 'nuxt-galaxy',
+    // The key in `nuxt.config` that holds your module options
     configKey: 'galaxy',
+    // Compatibility constraints
+    compatibility: {
+      // Semver version of supported nuxt versions
+      nuxt: '>=3.0.0',
+    },
   },
-  // Default configuration options of the Nuxt module
+  // Default configuration options for your module, can also be a function returning those
   defaults: {
-    url: process.env.GALAXY_URL as string,
-    apiKey: process.env.GALAXY_API_KEY as string,
+    galaxy: {
+      url: process.env.GALAXY_URL as string,
+      apiKey: process.env.GALAXY_API_KEY as string,
+      email: process.env.GALAXY_EMAIL as string,
+    },
   },
-  setup(_options, _nuxt) {
+  // Shorthand sugar to register Nuxt hooks
+  hooks: {},
+  // The function holding your module logic, it can be asynchronous
+  setup(moduleOptions, nuxt) {
+    // We create the `experimental` object if it doesn't exist yet
     const resolver = createResolver(import.meta.url)
+    // public runtime
+    nuxt.options.runtimeConfig.public.galaxy ||= {}
 
-    // Public runtimeConfig
-    _nuxt.options.runtimeConfig.public.galaxy = defu(_nuxt.options.runtimeConfig.public.galaxy, {
-      url: _options.url,
+    nuxt.options.runtimeConfig.public.galaxy = defu(nuxt.options.runtimeConfig.public.galaxy, {
+      url: moduleOptions.galaxy.url,
+    })
+    // Private runtime
+    nuxt.options.runtimeConfig.galaxy ||= {}
+    nuxt.options.runtimeConfig.galaxy = defu(nuxt.options.runtimeConfig.galaxy, {
+      apiKey: moduleOptions.galaxy.apiKey,
+      email: moduleOptions.galaxy.email,
     })
 
-    // Private runtimeConfig
-    _nuxt.options.runtimeConfig.galaxy = defu(_nuxt.options.runtimeConfig.galaxy, {
-      apiKey: _options.apiKey,
-    })
 
     // Make sure url and key are set
-    if (!_nuxt.options.runtimeConfig.public.galaxy.url) {
-      console.warn('Missing Galaxy url, set it either in `nuxt.config.js` or via env variable')
+    if (!nuxt.options.runtimeConfig.public.galaxy.url) {
+      console.warn('Missing galaxy url, set it either in `nuxt.config.js` or via env variable')
     }
-    if (!_nuxt.options.runtimeConfig.galaxy.apiKey) {
-      console.warn('Missing Galaxy api key, set it either in `nuxt.config.js` or via env variable')
+    if (!nuxt.options.runtimeConfig.galaxy.apiKey) {
+      console.warn('Missing galaxy api key, set it either in `nuxt.config.js` or via env variable')
     }
 
-    // Do not add the extension since the `.ts` will be transpiled to `.mjs` after `npm run prepack`
-    addPlugin(resolver.resolve('./runtime/plugins/galaxy.server'))
+    // From the runtime directory
+    addImportsDir(resolver.resolve('./runtime/app/composables'))
 
-    // addServerHandler({
-    //   route: '/api/galaxy/hello',
-    //   handler: resolver.resolve('./runtime/server/api/index.get'),
-    // })
-    addServerScanDir(resolver.resolve('./runtime/server'))
     addServerImportsDir(resolver.resolve('./runtime/server/utils'))
+    addServerImportsDir(resolver.resolve('./runtime/server/db'))
 
+    // add server routes
+
+    // Galaxy
+    addServerHandler({
+      route: '/api/galaxy/histories',
+      handler: resolver.resolve('./runtime/server/api/galaxy/histories.get'),
+      method: 'get',
+    })
+
+    addServerHandler({
+      route: '/api/galaxy/histories',
+      handler: resolver.resolve('./runtime/server/api/galaxy/histories.post'),
+      method: 'post',
+    })
+
+    addServerHandler({
+      route: '/api/galaxy/workflows',
+      handler: resolver.resolve('./runtime/server/api/galaxy/workflows.get'),
+      method: 'get',
+    })
+
+    addServerHandler({
+      route: '/api/probe',
+      handler: resolver.resolve('./runtime/server/api/probe.get'),
+      method: 'get',
+    })
+    // workflows
+
+    addServerHandler({
+      route: '/api/galaxy/workflows/:workflowId',
+      handler: resolver.resolve('./runtime/server/api/galaxy/workflows/[workflowId].get'),
+      method: 'get',
+    })
+
+    addServerHandler({
+      route: '/api/galaxy/workflows/:workflowId/input',
+      handler: resolver.resolve('./runtime/server/api/galaxy/workflows/[workflowId]/input.get'),
+      method: 'get',
+    })
+
+    addServerHandler({
+      route: '/api/galaxy/workflows/:workflowId/export-run',
+      handler: resolver.resolve('./runtime/server/api/galaxy/workflows/[workflowId]/export-run.get'),
+      method: 'get',
+    })
+
+    // db
+    addServerHandler({
+      route: '/api/db/analyses',
+      handler: resolver.resolve('./runtime/server/api/db/analyses.post'),
+      method: 'post',
+    })
+
+    addServerHandler({
+      route: '/api/db/analyses/:analysisId',
+      handler: resolver.resolve('./runtime/server/api/db/analyses/[analysisId].delete'),
+      method: 'delete',
+    })
+
+    addServerHandler({
+      route: '/api/db/workflows',
+      handler: resolver.resolve('./runtime/server/api/db/workflows.post'),
+      method: 'post',
+    })
+
+
+
+
+    /*********************/
+    // Add server plugin
+    /*********************/
+    addServerPlugin(resolver.resolve('./runtime/server/plugins/galaxy'))
+    // addServerHandler({
+    //   handler: resolver.resolve('./runtime/server/middleware/galaxy'),
+    //   middleware: true,
+    // })
   },
 })
