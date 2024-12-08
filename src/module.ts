@@ -1,4 +1,4 @@
-import { addImportsDir, addServerHandler, addServerImportsDir, addServerPlugin, createResolver, defineNuxtModule } from '@nuxt/kit'
+import { addImportsDir, addRouteMiddleware, addServerHandler, addServerImportsDir, addServerPlugin, createResolver, defineNuxtModule } from '@nuxt/kit'
 import { defu } from 'defu'
 
 export interface ModuleOptions {
@@ -58,9 +58,16 @@ export default defineNuxtModule<ModuleOptions>({
 
     // From the runtime directory
     addImportsDir(resolver.resolve('./runtime/app/composables'))
+    addImportsDir(resolver.resolve('./runtime/app/composables/galaxy'))
 
     addServerImportsDir(resolver.resolve('./runtime/server/utils'))
     addServerImportsDir(resolver.resolve('./runtime/server/db'))
+
+    // add route middleware
+    addRouteMiddleware({
+      name: 'auth',
+      path: resolver.resolve('./runtime/app/middleware/auth'),
+    })
 
     // add server routes
 
