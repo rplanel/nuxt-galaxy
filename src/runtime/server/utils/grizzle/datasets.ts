@@ -12,7 +12,6 @@ export async function uploadDatasets(
 ) {
   const { public: { galaxy: { url } }, galaxy: { apiKey } } = useRuntimeConfig()
   const galaxyClient = GalaxyClient.getInstance(apiKey, url)
-  const t = Object.keys(datamap)
   const datasetEntries = Object.entries(datamap)
   return Promise.all(
     datasetEntries.map(([step, { name, storage_object_id: storageObjectId }]) => {
@@ -29,7 +28,7 @@ export async function uploadDatasets(
         }
       }).then(async ({ uploadedDatasets }) => {
         if (uploadedDatasets.length === 1) {
-          const { id: uploadedGalaxyId, name, uuid, file_ext: extension, file_size: fileSize, create_time: createdAt, state } = uploadedDatasets[0]
+          const { id: uploadedGalaxyId, name, uuid, file_ext: extension, file_size: fileSize, create_time: createdAt } = uploadedDatasets[0]
 
           if (storageObjectId) {
             return useDrizzle()

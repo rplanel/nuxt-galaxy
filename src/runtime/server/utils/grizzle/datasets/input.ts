@@ -6,6 +6,7 @@ import { analysisInputs } from '../../../db/schema/galaxy/analysisInputs'
 import { histories } from '../../../db/schema/galaxy/histories'
 import { useDrizzle } from '../../drizzle'
 import { takeUniqueOrThrow } from '../helper'
+import { isDatasetTerminalState } from '../datasets'
 
 export async function getOrCreateInputDataset(
   galaxyDatasetId: string,
@@ -96,7 +97,7 @@ export async function synchronizeInputDataset(
   ownerId: string,
 ) {
   const datasetDb = await getOrCreateInputDataset(galaxyDatasetId, analysisId, historyId, supabase, ownerId)
-  const { public: { galaxy: { url } }, galaxy: { apiKey, email } } = useRuntimeConfig()
+  const { public: { galaxy: { url } }, galaxy: { apiKey } } = useRuntimeConfig()
   const galaxyClient = GalaxyClient.getInstance(apiKey, url)
   if (datasetDb) {
     const isSync = await isInputDatasetSync(galaxyDatasetId, ownerId)

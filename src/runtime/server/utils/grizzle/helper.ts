@@ -1,4 +1,6 @@
-export const takeUniqueOrThrow = <T extends any[]>(values: T): T[number] => {
+import { createError } from 'h3'
+
+export const takeUniqueOrThrow = <T extends unknown[]>(values: T): T[number] => {
   // if (values.length === 0) throw createError({
   //     statusCode: 404,
   //     statusMessage: "inexistent value"

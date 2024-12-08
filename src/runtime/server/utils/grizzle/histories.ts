@@ -53,6 +53,7 @@ export async function addHistory(name: string, ownerId: string) {
       }
       catch (error) {
         // delete galaxy history
+        console.log(error)
         await galaxyClient.histories().deleteHistory(galaxyHistory.id)
       }
     }
