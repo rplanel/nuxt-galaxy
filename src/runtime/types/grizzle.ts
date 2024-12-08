@@ -1,11 +1,8 @@
-import type { HistoryState, InvocationState, JobState } from "@rplanel/galaxy-js"
-
-
+import type { HistoryState, InvocationState, JobState } from '@rplanel/galaxy-js'
 
 export interface Sync {
   isTerminalState: boolean
   updated: boolean
-
 
 }
 
@@ -22,18 +19,17 @@ export interface SyncJob extends Sync {
   outputs?: SyncDatasets[]
 }
 
-
 export interface SyncHistory extends Sync {
   state: HistoryState
-  historyId: number,
-  isSync: boolean,
+  historyId: number
+  isSync: boolean
   jobs?: SyncJob[]
   outputs?: SyncDatasets[]
 }
 
 export interface UpdatedAnalysisLog extends Sync {
   analysisId: number
-  state: InvocationState,
+  state: InvocationState
   // jobs?: Array<SyncJob>,
   history: SyncHistory
   isSync: boolean

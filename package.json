@@ -26,7 +26,14 @@
     "lint": "eslint .",
     "test": "vitest run",
     "test:watch": "vitest watch",
-    "test:types": "vue-tsc --noEmit && cd playground && vue-tsc --noEmit"
+    "test:types": "vue-tsc --noEmit && cd playground && vue-tsc --noEmit",
+    "supabase:status": "pnpm --workdir src/runtime supabase status",
+    "supabase:start": "pnpm supabase --workdir src/runtime start",
+    "supabase:stop": "pnpm supabase --workdir src/runtime stop",
+    "supabase:db:reset": "pnpm supabase --workdir src/runtime db reset",
+    "supabase:migration:new": "pnpm supabase --workdir src/runtime migration new",
+    "supabase:migration:up": "pnpm supabase --workdir src/runtime migration up",
+    "drizzle:generate": "pnpm drizzle-kit generate"
   },
   "dependencies": {
     "@nuxt/kit": "^3.14.1592",
@@ -48,6 +55,7 @@
     "drizzle-kit": "^0.29.1",
     "eslint": "^9.16.0",
     "nuxt": "^3.14.1592",
+    "supabase": "^2.0.0",
     "tsx": "^4.19.2",
     "typescript": "latest",
     "vitest": "^2.1.8",

@@ -1,0 +1,5 @@
+ALTER TABLE "galaxy"."role_permissions" ALTER COLUMN "permission" SET DATA TYPE text;--> statement-breakpoint
+DROP TYPE "galaxy"."role_permissions_type";--> statement-breakpoint
+CREATE TYPE "galaxy"."role_permissions_type" AS ENUM('workflows.insert', 'workflows.delete', 'instances.insert', 'instances.delete');--> statement-breakpoint
+ALTER TABLE "galaxy"."role_permissions" ALTER COLUMN "permission" SET DATA TYPE "galaxy"."role_permissions_type" USING "permission"::"galaxy"."role_permissions_type";--> statement-breakpoint
+CREATE VIEW "galaxy"."datasets_with_storage_path" AS (select "galaxy"."datasets"."id", "galaxy"."datasets"."owner_id", "galaxy"."datasets"."history_id", "galaxy"."datasets"."storage_object_id", "galaxy"."datasets"."created_at", "galaxy"."datasets"."uuid", "galaxy"."datasets"."extension", "galaxy"."datasets"."file_size", "galaxy"."datasets"."data_lines", "galaxy"."datasets"."galaxy_id", "galaxy"."datasets"."name", "galaxy"."datasets"."annotation", "storage"."objects"."name" from "galaxy"."datasets" inner join "storage"."objects" on "galaxy"."datasets"."storage_object_id" = "storage"."objects"."id");

@@ -1,4 +1,4 @@
-import { addComponent, addImportsDir, addServerHandler, addServerImportsDir, addServerPlugin, createResolver, defineNuxtModule } from '@nuxt/kit'
+import { addImportsDir, addServerHandler, addServerImportsDir, addServerPlugin, createResolver, defineNuxtModule } from '@nuxt/kit'
 import { defu } from 'defu'
 
 export interface ModuleOptions {
@@ -47,7 +47,6 @@ export default defineNuxtModule<ModuleOptions>({
       apiKey: moduleOptions.galaxy.apiKey,
       email: moduleOptions.galaxy.email,
     })
-
 
     // Make sure url and key are set
     if (!nuxt.options.runtimeConfig.public.galaxy.url) {
@@ -127,9 +126,6 @@ export default defineNuxtModule<ModuleOptions>({
       handler: resolver.resolve('./runtime/server/api/db/workflows.post'),
       method: 'post',
     })
-
-
-
 
     /*********************/
     // Add server plugin

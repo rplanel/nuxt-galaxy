@@ -21,7 +21,7 @@ export type Database = {
           name: string
           owner_id: string
           parameters: Json
-          state: Database["galaxy"]["Enums"]["invocation_state"]
+          state: Database['galaxy']['Enums']['invocation_state']
           stderr: string | null
           stdout: string | null
           workflow_id: number
@@ -37,7 +37,7 @@ export type Database = {
           name: string
           owner_id: string
           parameters: Json
-          state: Database["galaxy"]["Enums"]["invocation_state"]
+          state: Database['galaxy']['Enums']['invocation_state']
           stderr?: string | null
           stdout?: string | null
           workflow_id: number
@@ -53,25 +53,25 @@ export type Database = {
           name?: string
           owner_id?: string
           parameters?: Json
-          state?: Database["galaxy"]["Enums"]["invocation_state"]
+          state?: Database['galaxy']['Enums']['invocation_state']
           stderr?: string | null
           stdout?: string | null
           workflow_id?: number
         }
         Relationships: [
           {
-            foreignKeyName: "analyses_history_id_histories_id_fk"
-            columns: ["history_id"]
+            foreignKeyName: 'analyses_history_id_histories_id_fk'
+            columns: ['history_id']
             isOneToOne: true
-            referencedRelation: "histories"
-            referencedColumns: ["id"]
+            referencedRelation: 'histories'
+            referencedColumns: ['id']
           },
           {
-            foreignKeyName: "analyses_workflow_id_workflows_id_fk"
-            columns: ["workflow_id"]
+            foreignKeyName: 'analyses_workflow_id_workflows_id_fk'
+            columns: ['workflow_id']
             isOneToOne: false
-            referencedRelation: "workflows"
-            referencedColumns: ["id"]
+            referencedRelation: 'workflows'
+            referencedColumns: ['id']
           },
         ]
       }
@@ -80,34 +80,34 @@ export type Database = {
           analysis_id: number
           dataset_id: number
           id: number
-          state: Database["galaxy"]["Enums"]["dataset_state"]
+          state: Database['galaxy']['Enums']['dataset_state']
         }
         Insert: {
           analysis_id: number
           dataset_id: number
           id?: number
-          state: Database["galaxy"]["Enums"]["dataset_state"]
+          state: Database['galaxy']['Enums']['dataset_state']
         }
         Update: {
           analysis_id?: number
           dataset_id?: number
           id?: number
-          state?: Database["galaxy"]["Enums"]["dataset_state"]
+          state?: Database['galaxy']['Enums']['dataset_state']
         }
         Relationships: [
           {
-            foreignKeyName: "analysis_inputs_analysis_id_analyses_id_fk"
-            columns: ["analysis_id"]
+            foreignKeyName: 'analysis_inputs_analysis_id_analyses_id_fk'
+            columns: ['analysis_id']
             isOneToOne: false
-            referencedRelation: "analyses"
-            referencedColumns: ["id"]
+            referencedRelation: 'analyses'
+            referencedColumns: ['id']
           },
           {
-            foreignKeyName: "analysis_inputs_dataset_id_datasets_id_fk"
-            columns: ["dataset_id"]
+            foreignKeyName: 'analysis_inputs_dataset_id_datasets_id_fk'
+            columns: ['dataset_id']
             isOneToOne: true
-            referencedRelation: "datasets"
-            referencedColumns: ["id"]
+            referencedRelation: 'datasets'
+            referencedColumns: ['id']
           },
         ]
       }
@@ -117,43 +117,43 @@ export type Database = {
           dataset_id: number
           id: number
           job_id: number
-          state: Database["galaxy"]["Enums"]["dataset_state"]
+          state: Database['galaxy']['Enums']['dataset_state']
         }
         Insert: {
           analysis_id: number
           dataset_id: number
           id?: number
           job_id: number
-          state: Database["galaxy"]["Enums"]["dataset_state"]
+          state: Database['galaxy']['Enums']['dataset_state']
         }
         Update: {
           analysis_id?: number
           dataset_id?: number
           id?: number
           job_id?: number
-          state?: Database["galaxy"]["Enums"]["dataset_state"]
+          state?: Database['galaxy']['Enums']['dataset_state']
         }
         Relationships: [
           {
-            foreignKeyName: "analysis_ouputs_analysis_id_analyses_id_fk"
-            columns: ["analysis_id"]
+            foreignKeyName: 'analysis_ouputs_analysis_id_analyses_id_fk'
+            columns: ['analysis_id']
             isOneToOne: false
-            referencedRelation: "analyses"
-            referencedColumns: ["id"]
+            referencedRelation: 'analyses'
+            referencedColumns: ['id']
           },
           {
-            foreignKeyName: "analysis_ouputs_dataset_id_datasets_id_fk"
-            columns: ["dataset_id"]
+            foreignKeyName: 'analysis_ouputs_dataset_id_datasets_id_fk'
+            columns: ['dataset_id']
             isOneToOne: false
-            referencedRelation: "datasets"
-            referencedColumns: ["id"]
+            referencedRelation: 'datasets'
+            referencedColumns: ['id']
           },
           {
-            foreignKeyName: "analysis_ouputs_job_id_jobs_id_fk"
-            columns: ["job_id"]
+            foreignKeyName: 'analysis_ouputs_job_id_jobs_id_fk'
+            columns: ['job_id']
             isOneToOne: false
-            referencedRelation: "jobs"
-            referencedColumns: ["id"]
+            referencedRelation: 'jobs'
+            referencedColumns: ['id']
           },
         ]
       }
@@ -202,11 +202,11 @@ export type Database = {
         }
         Relationships: [
           {
-            foreignKeyName: "datasets_history_id_histories_id_fk"
-            columns: ["history_id"]
+            foreignKeyName: 'datasets_history_id_histories_id_fk'
+            columns: ['history_id']
             isOneToOne: false
-            referencedRelation: "histories"
-            referencedColumns: ["id"]
+            referencedRelation: 'histories'
+            referencedColumns: ['id']
           },
         ]
       }
@@ -225,18 +225,18 @@ export type Database = {
         }
         Relationships: [
           {
-            foreignKeyName: "datasets_to_tags_dataset_id_datasets_id_fk"
-            columns: ["dataset_id"]
+            foreignKeyName: 'datasets_to_tags_dataset_id_datasets_id_fk'
+            columns: ['dataset_id']
             isOneToOne: false
-            referencedRelation: "datasets"
-            referencedColumns: ["id"]
+            referencedRelation: 'datasets'
+            referencedColumns: ['id']
           },
           {
-            foreignKeyName: "datasets_to_tags_tag_id_tags_id_fk"
-            columns: ["tag_id"]
+            foreignKeyName: 'datasets_to_tags_tag_id_tags_id_fk'
+            columns: ['tag_id']
             isOneToOne: false
-            referencedRelation: "tags"
-            referencedColumns: ["id"]
+            referencedRelation: 'tags'
+            referencedColumns: ['id']
           },
         ]
       }
@@ -250,7 +250,7 @@ export type Database = {
           is_sync: boolean
           name: string
           owner_id: string
-          state: Database["galaxy"]["Enums"]["history_state"]
+          state: Database['galaxy']['Enums']['history_state']
           user_id: number
         }
         Insert: {
@@ -262,7 +262,7 @@ export type Database = {
           is_sync?: boolean
           name: string
           owner_id: string
-          state: Database["galaxy"]["Enums"]["history_state"]
+          state: Database['galaxy']['Enums']['history_state']
           user_id: number
         }
         Update: {
@@ -274,16 +274,16 @@ export type Database = {
           is_sync?: boolean
           name?: string
           owner_id?: string
-          state?: Database["galaxy"]["Enums"]["history_state"]
+          state?: Database['galaxy']['Enums']['history_state']
           user_id?: number
         }
         Relationships: [
           {
-            foreignKeyName: "histories_user_id_user_id_fk"
-            columns: ["user_id"]
+            foreignKeyName: 'histories_user_id_user_id_fk'
+            columns: ['user_id']
             isOneToOne: false
-            referencedRelation: "user"
-            referencedColumns: ["id"]
+            referencedRelation: 'user'
+            referencedColumns: ['id']
           },
         ]
       }
@@ -314,7 +314,7 @@ export type Database = {
           id: number
           is_sync: boolean
           owner_id: string
-          state: Database["galaxy"]["Enums"]["job_state"]
+          state: Database['galaxy']['Enums']['job_state']
           stderr: string | null
           stdout: string | null
           step_id: number
@@ -328,7 +328,7 @@ export type Database = {
           id?: number
           is_sync?: boolean
           owner_id: string
-          state: Database["galaxy"]["Enums"]["job_state"]
+          state: Database['galaxy']['Enums']['job_state']
           stderr?: string | null
           stdout?: string | null
           step_id: number
@@ -342,7 +342,7 @@ export type Database = {
           id?: number
           is_sync?: boolean
           owner_id?: string
-          state?: Database["galaxy"]["Enums"]["job_state"]
+          state?: Database['galaxy']['Enums']['job_state']
           stderr?: string | null
           stdout?: string | null
           step_id?: number
@@ -350,26 +350,26 @@ export type Database = {
         }
         Relationships: [
           {
-            foreignKeyName: "jobs_analysis_id_analyses_id_fk"
-            columns: ["analysis_id"]
+            foreignKeyName: 'jobs_analysis_id_analyses_id_fk'
+            columns: ['analysis_id']
             isOneToOne: false
-            referencedRelation: "analyses"
-            referencedColumns: ["id"]
+            referencedRelation: 'analyses'
+            referencedColumns: ['id']
           },
         ]
       }
       roles: {
         Row: {
           id: number
-          name: Database["galaxy"]["Enums"]["role_type"]
+          name: Database['galaxy']['Enums']['role_type']
         }
         Insert: {
           id?: number
-          name: Database["galaxy"]["Enums"]["role_type"]
+          name: Database['galaxy']['Enums']['role_type']
         }
         Update: {
           id?: number
-          name?: Database["galaxy"]["Enums"]["role_type"]
+          name?: Database['galaxy']['Enums']['role_type']
         }
         Relationships: []
       }
@@ -427,11 +427,11 @@ export type Database = {
         }
         Relationships: [
           {
-            foreignKeyName: "user_instance_id_instances_id_fk"
-            columns: ["instance_id"]
+            foreignKeyName: 'user_instance_id_instances_id_fk'
+            columns: ['instance_id']
             isOneToOne: false
-            referencedRelation: "instances"
-            referencedColumns: ["id"]
+            referencedRelation: 'instances'
+            referencedColumns: ['id']
           },
         ]
       }
@@ -453,11 +453,11 @@ export type Database = {
         }
         Relationships: [
           {
-            foreignKeyName: "user_profiles_role_id_roles_id_fk"
-            columns: ["role_id"]
+            foreignKeyName: 'user_profiles_role_id_roles_id_fk'
+            columns: ['role_id']
             isOneToOne: false
-            referencedRelation: "roles"
-            referencedColumns: ["id"]
+            referencedRelation: 'roles'
+            referencedColumns: ['id']
           },
         ]
       }
@@ -491,11 +491,11 @@ export type Database = {
         }
         Relationships: [
           {
-            foreignKeyName: "workflows_user_id_user_id_fk"
-            columns: ["user_id"]
+            foreignKeyName: 'workflows_user_id_user_id_fk'
+            columns: ['user_id']
             isOneToOne: false
-            referencedRelation: "user"
-            referencedColumns: ["id"]
+            referencedRelation: 'user'
+            referencedColumns: ['id']
           },
         ]
       }
@@ -514,18 +514,18 @@ export type Database = {
         }
         Relationships: [
           {
-            foreignKeyName: "workflows_to_tags_tag_id_tags_id_fk"
-            columns: ["tag_id"]
+            foreignKeyName: 'workflows_to_tags_tag_id_tags_id_fk'
+            columns: ['tag_id']
             isOneToOne: false
-            referencedRelation: "tags"
-            referencedColumns: ["id"]
+            referencedRelation: 'tags'
+            referencedColumns: ['id']
           },
           {
-            foreignKeyName: "workflows_to_tags_workflow_id_workflows_id_fk"
-            columns: ["workflow_id"]
+            foreignKeyName: 'workflows_to_tags_workflow_id_workflows_id_fk'
+            columns: ['workflow_id']
             isOneToOne: false
-            referencedRelation: "workflows"
-            referencedColumns: ["id"]
+            referencedRelation: 'workflows'
+            referencedColumns: ['id']
           },
         ]
       }
@@ -538,55 +538,55 @@ export type Database = {
     }
     Enums: {
       dataset_state:
-        | "ok"
-        | "empty"
-        | "error"
-        | "discarded"
-        | "failed_metadata"
-        | "new"
-        | "upload"
-        | "queued"
-        | "running"
-        | "paused"
-        | "setting_metadata"
-        | "deferred"
+        | 'ok'
+        | 'empty'
+        | 'error'
+        | 'discarded'
+        | 'failed_metadata'
+        | 'new'
+        | 'upload'
+        | 'queued'
+        | 'running'
+        | 'paused'
+        | 'setting_metadata'
+        | 'deferred'
       history_state:
-        | "new"
-        | "upload"
-        | "queued"
-        | "running"
-        | "ok"
-        | "empty"
-        | "error"
-        | "paused"
-        | "setting_metadata"
-        | "failed_metadata"
-        | "deferred"
-        | "discarded"
+        | 'new'
+        | 'upload'
+        | 'queued'
+        | 'running'
+        | 'ok'
+        | 'empty'
+        | 'error'
+        | 'paused'
+        | 'setting_metadata'
+        | 'failed_metadata'
+        | 'deferred'
+        | 'discarded'
       invocation_state:
-        | "cancelled"
-        | "failed"
-        | "scheduled"
-        | "new"
-        | "ready"
-        | "cancelling"
+        | 'cancelled'
+        | 'failed'
+        | 'scheduled'
+        | 'new'
+        | 'ready'
+        | 'cancelling'
       job_state:
-        | "deleted"
-        | "deleting"
-        | "error"
-        | "ok"
-        | "new"
-        | "resubmitted"
-        | "upload"
-        | "waiting"
-        | "queued"
-        | "running"
-        | "failed"
-        | "paused"
-        | "stop"
-        | "stopped"
-        | "skipped"
-      role_type: "admin" | "user"
+        | 'deleted'
+        | 'deleting'
+        | 'error'
+        | 'ok'
+        | 'new'
+        | 'resubmitted'
+        | 'upload'
+        | 'waiting'
+        | 'queued'
+        | 'running'
+        | 'failed'
+        | 'paused'
+        | 'stop'
+        | 'stopped'
+        | 'skipped'
+      role_type: 'admin' | 'user'
     }
     CompositeTypes: {
       [_ in never]: never
@@ -741,11 +741,11 @@ export type Database = {
         }
         Relationships: [
           {
-            foreignKeyName: "objects_bucketId_fkey"
-            columns: ["bucket_id"]
+            foreignKeyName: 'objects_bucketId_fkey'
+            columns: ['bucket_id']
             isOneToOne: false
-            referencedRelation: "buckets"
-            referencedColumns: ["id"]
+            referencedRelation: 'buckets'
+            referencedColumns: ['id']
           },
         ]
       }
@@ -785,11 +785,11 @@ export type Database = {
         }
         Relationships: [
           {
-            foreignKeyName: "s3_multipart_uploads_bucket_id_fkey"
-            columns: ["bucket_id"]
+            foreignKeyName: 's3_multipart_uploads_bucket_id_fkey'
+            columns: ['bucket_id']
             isOneToOne: false
-            referencedRelation: "buckets"
-            referencedColumns: ["id"]
+            referencedRelation: 'buckets'
+            referencedColumns: ['id']
           },
         ]
       }
@@ -832,18 +832,18 @@ export type Database = {
         }
         Relationships: [
           {
-            foreignKeyName: "s3_multipart_uploads_parts_bucket_id_fkey"
-            columns: ["bucket_id"]
+            foreignKeyName: 's3_multipart_uploads_parts_bucket_id_fkey'
+            columns: ['bucket_id']
             isOneToOne: false
-            referencedRelation: "buckets"
-            referencedColumns: ["id"]
+            referencedRelation: 'buckets'
+            referencedColumns: ['id']
           },
           {
-            foreignKeyName: "s3_multipart_uploads_parts_upload_id_fkey"
-            columns: ["upload_id"]
+            foreignKeyName: 's3_multipart_uploads_parts_upload_id_fkey'
+            columns: ['upload_id']
             isOneToOne: false
-            referencedRelation: "s3_multipart_uploads"
-            referencedColumns: ["id"]
+            referencedRelation: 's3_multipart_uploads'
+            referencedColumns: ['id']
           },
         ]
       }
@@ -951,100 +951,99 @@ export type Database = {
   }
 }
 
-type PublicSchema = Database[Extract<keyof Database, "public">]
+type PublicSchema = Database[Extract<keyof Database, 'public'>]
 
 export type Tables<
   PublicTableNameOrOptions extends
-    | keyof (PublicSchema["Tables"] & PublicSchema["Views"])
-    | { schema: keyof Database },
+  | keyof (PublicSchema['Tables'] & PublicSchema['Views'])
+  | { schema: keyof Database },
   TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
-    ? keyof (Database[PublicTableNameOrOptions["schema"]]["Tables"] &
-        Database[PublicTableNameOrOptions["schema"]]["Views"])
+    ? keyof (Database[PublicTableNameOrOptions['schema']]['Tables'] &
+      Database[PublicTableNameOrOptions['schema']]['Views'])
     : never = never,
 > = PublicTableNameOrOptions extends { schema: keyof Database }
-  ? (Database[PublicTableNameOrOptions["schema"]]["Tables"] &
-      Database[PublicTableNameOrOptions["schema"]]["Views"])[TableName] extends {
+  ? (Database[PublicTableNameOrOptions['schema']]['Tables'] &
+    Database[PublicTableNameOrOptions['schema']]['Views'])[TableName] extends {
       Row: infer R
     }
-    ? R
-    : never
-  : PublicTableNameOrOptions extends keyof (PublicSchema["Tables"] &
-        PublicSchema["Views"])
-    ? (PublicSchema["Tables"] &
-        PublicSchema["Views"])[PublicTableNameOrOptions] extends {
-        Row: infer R
-      }
       ? R
       : never
+  : PublicTableNameOrOptions extends keyof (PublicSchema['Tables'] &
+    PublicSchema['Views'])
+    ? (PublicSchema['Tables'] &
+      PublicSchema['Views'])[PublicTableNameOrOptions] extends {
+        Row: infer R
+      }
+        ? R
+        : never
     : never
 
 export type TablesInsert<
   PublicTableNameOrOptions extends
-    | keyof PublicSchema["Tables"]
-    | { schema: keyof Database },
+  | keyof PublicSchema['Tables']
+  | { schema: keyof Database },
   TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
-    ? keyof Database[PublicTableNameOrOptions["schema"]]["Tables"]
+    ? keyof Database[PublicTableNameOrOptions['schema']]['Tables']
     : never = never,
 > = PublicTableNameOrOptions extends { schema: keyof Database }
-  ? Database[PublicTableNameOrOptions["schema"]]["Tables"][TableName] extends {
-      Insert: infer I
-    }
+  ? Database[PublicTableNameOrOptions['schema']]['Tables'][TableName] extends {
+    Insert: infer I
+  }
     ? I
     : never
-  : PublicTableNameOrOptions extends keyof PublicSchema["Tables"]
-    ? PublicSchema["Tables"][PublicTableNameOrOptions] extends {
-        Insert: infer I
-      }
+  : PublicTableNameOrOptions extends keyof PublicSchema['Tables']
+    ? PublicSchema['Tables'][PublicTableNameOrOptions] extends {
+      Insert: infer I
+    }
       ? I
       : never
     : never
 
 export type TablesUpdate<
   PublicTableNameOrOptions extends
-    | keyof PublicSchema["Tables"]
-    | { schema: keyof Database },
+  | keyof PublicSchema['Tables']
+  | { schema: keyof Database },
   TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
-    ? keyof Database[PublicTableNameOrOptions["schema"]]["Tables"]
+    ? keyof Database[PublicTableNameOrOptions['schema']]['Tables']
     : never = never,
 > = PublicTableNameOrOptions extends { schema: keyof Database }
-  ? Database[PublicTableNameOrOptions["schema"]]["Tables"][TableName] extends {
-      Update: infer U
-    }
+  ? Database[PublicTableNameOrOptions['schema']]['Tables'][TableName] extends {
+    Update: infer U
+  }
     ? U
     : never
-  : PublicTableNameOrOptions extends keyof PublicSchema["Tables"]
-    ? PublicSchema["Tables"][PublicTableNameOrOptions] extends {
-        Update: infer U
-      }
+  : PublicTableNameOrOptions extends keyof PublicSchema['Tables']
+    ? PublicSchema['Tables'][PublicTableNameOrOptions] extends {
+      Update: infer U
+    }
       ? U
       : never
     : never
 
 export type Enums<
   PublicEnumNameOrOptions extends
-    | keyof PublicSchema["Enums"]
-    | { schema: keyof Database },
+  | keyof PublicSchema['Enums']
+  | { schema: keyof Database },
   EnumName extends PublicEnumNameOrOptions extends { schema: keyof Database }
-    ? keyof Database[PublicEnumNameOrOptions["schema"]]["Enums"]
+    ? keyof Database[PublicEnumNameOrOptions['schema']]['Enums']
     : never = never,
 > = PublicEnumNameOrOptions extends { schema: keyof Database }
-  ? Database[PublicEnumNameOrOptions["schema"]]["Enums"][EnumName]
-  : PublicEnumNameOrOptions extends keyof PublicSchema["Enums"]
-    ? PublicSchema["Enums"][PublicEnumNameOrOptions]
+  ? Database[PublicEnumNameOrOptions['schema']]['Enums'][EnumName]
+  : PublicEnumNameOrOptions extends keyof PublicSchema['Enums']
+    ? PublicSchema['Enums'][PublicEnumNameOrOptions]
     : never
 
 export type CompositeTypes<
   PublicCompositeTypeNameOrOptions extends
-    | keyof PublicSchema["CompositeTypes"]
-    | { schema: keyof Database },
+  | keyof PublicSchema['CompositeTypes']
+  | { schema: keyof Database },
   CompositeTypeName extends PublicCompositeTypeNameOrOptions extends {
     schema: keyof Database
   }
-    ? keyof Database[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"]
+    ? keyof Database[PublicCompositeTypeNameOrOptions['schema']]['CompositeTypes']
     : never = never,
 > = PublicCompositeTypeNameOrOptions extends { schema: keyof Database }
-  ? Database[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"][CompositeTypeName]
-  : PublicCompositeTypeNameOrOptions extends keyof PublicSchema["CompositeTypes"]
-    ? PublicSchema["CompositeTypes"][PublicCompositeTypeNameOrOptions]
+  ? Database[PublicCompositeTypeNameOrOptions['schema']]['CompositeTypes'][CompositeTypeName]
+  : PublicCompositeTypeNameOrOptions extends keyof PublicSchema['CompositeTypes']
+    ? PublicSchema['CompositeTypes'][PublicCompositeTypeNameOrOptions]
     : never
-
