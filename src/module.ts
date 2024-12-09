@@ -1,4 +1,4 @@
-import { addImportsDir, addRouteMiddleware, addServerHandler, addServerImportsDir, addServerPlugin, createResolver, defineNuxtModule } from '@nuxt/kit'
+import { addImportsDir, addRouteMiddleware, addServerHandler, addServerImportsDir, addServerPlugin, createResolver, defineNuxtModule, installModule } from '@nuxt/kit'
 import { defu } from 'defu'
 
 export interface ModuleOptions {
@@ -32,7 +32,7 @@ export default defineNuxtModule<ModuleOptions>({
   // Shorthand sugar to register Nuxt hooks
   hooks: {},
   // The function holding your module logic, it can be asynchronous
-  setup(moduleOptions, nuxt) {
+  async setup(moduleOptions, nuxt) {
     // We create the `experimental` object if it doesn't exist yet
     const resolver = createResolver(import.meta.url)
     // public runtime
@@ -55,6 +55,26 @@ export default defineNuxtModule<ModuleOptions>({
     if (!nuxt.options.runtimeConfig.galaxy.apiKey) {
       console.warn('Missing galaxy api key, set it either in `nuxt.config.js` or via env variable')
     }
+
+    await installModule('@nuxtjs/supabase', {
+      // module configuration
+      exposeConfig: true,
+      config: {
+        redirectOptions: {
+          login: '/login',
+          callback: '/confirm',
+          include: ['/admin(/*)?'],
+          exclude: [],
+          cookieRedirect: true,
+        },
+        clientOptions: {
+          db: {
+            schema: 'galaxy',
+          },
+        },
+        types: './runtime/types/supabase',
+      },
+    })
 
     // From the runtime directory
     addImportsDir(resolver.resolve('./runtime/app/composables'))

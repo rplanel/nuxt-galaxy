@@ -45,6 +45,9 @@ importers:
       '@nuxt/test-utils':
         specifier: ^3.14.4
         version: 3.15.1(@types/node@22.10.1)(magicast@0.3.5)(rollup@4.28.1)(terser@5.37.0)(typescript@5.6.3)(vitest@2.1.8(@types/node@22.10.1)(terser@5.37.0))
+      '@nuxtjs/supabase':
+        specifier: ^1.4.3
+        version: 1.4.3
       '@types/node':
         specifier: latest
         version: 22.10.1
@@ -1174,6 +1177,9 @@ packages:
     peerDependencies:
       vue: ^3.3.4
 
+  '@nuxtjs/supabase@1.4.3':
+    resolution: {integrity: sha512-H3o/J99jzeWjmm3oXLd3r9s8/FCzsBJla0WtW26WbO3KQ89N+zCI6UDrSbLqJw22g/xURKINp4lr9AzaKrvWKw==}
+
   '@parcel/watcher-android-arm64@2.5.0':
     resolution: {integrity: sha512-qlX4eS28bUcQCdribHkg/herLe+0A9RyYC+mm2PXpncit8z5b3nSqGVzMNR3CmtAOgRutiZ02eIJJgP/b1iEFQ==}
     engines: {node: '>= 10.0.0'}
@@ -1279,8 +1285,8 @@ packages:
   '@redocly/config@0.17.1':
     resolution: {integrity: sha512-CEmvaJuG7pm2ylQg53emPmtgm4nW2nxBgwXzbVEHpGas/lGnMyN8Zlkgiz6rPw0unASg6VW3wlz27SOL5XFHYQ==}
 
-  '@redocly/openapi-core@1.25.15':
-    resolution: {integrity: sha512-/dpr5zpGj2t1Bf7EIXEboRZm1hsJZBQfv3Q1pkivtdAEg3if2khv+b9gY68aquC6cM/2aQY2kMLy8LlY2tn+Og==}
+  '@redocly/openapi-core@1.26.0':
+    resolution: {integrity: sha512-8Ofu6WpBp7eoLmf1qQ4+T0W4LRr8es+4Drw/RJG+acPXmaT2TmHk2B2v+3+1R9GqSIj6kx3N7JmQkxAPCnvDLw==}
     engines: {node: '>=14.19.0', npm: '>=7.0.0'}
 
   '@rollup/plugin-alias@5.1.1':
@@ -1498,6 +1504,11 @@ packages:
   '@supabase/realtime-js@2.10.9':
     resolution: {integrity: sha512-0AjN65VDNIScZzrrPaVvlND4vbgVS+j9Wcy3zf7e+l9JY4IwCTahFenPLcKy9bkr7KY0wfB7MkipZPKxMaDnjw==}
 
+  '@supabase/ssr@0.5.2':
+    resolution: {integrity: sha512-n3plRhr2Bs8Xun1o4S3k1CDv17iH5QY9YcoEvXX3bxV1/5XSasA0mNXYycFmADIdtdE6BG9MRjP5CGIs8qxC8A==}
+    peerDependencies:
+      '@supabase/supabase-js': ^2.43.4
+
   '@supabase/storage-js@2.7.1':
     resolution: {integrity: sha512-asYHcyDR1fKqrMpytAS1zjyEfvxuOIp1CIXX7ji4lHHcJKqyk+sLl/Vxgm4sN6u8zvuUtae9e4kDxQP2qrwWBA==}
 
@@ -1507,6 +1518,9 @@ packages:
   '@trysound/sax@0.2.0':
     resolution: {integrity: sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA==}
     engines: {node: '>=10.13.0'}
+
+  '@types/cookie@0.6.0':
+    resolution: {integrity: sha512-4Kh9a6B2bQciAhf7FSuMRRkUWecJgJu9nPnx3yzpsfXX/c50REIqpHY4C82bXP90qrLtXtkDxTZosYO3UpOwlA==}
 
   '@types/estree@1.0.6':
     resolution: {integrity: sha512-AYnb1nQyY49te+VRAVgmzfcgjYS91mY5P0TKUDCLEM+gNnA+3T6rWITXRLYCpahpqSQbN5cE+gHpnPyXjHWxcw==}
@@ -2086,6 +2100,10 @@ packages:
 
   cookie-es@1.2.2:
     resolution: {integrity: sha512-+W7VmiVINB+ywl1HGXJXmrqkOhpKrIiVZV6tQuV54ZyQC7MMuBt81Vc336GMLoHBq5hV/F9eXgt5Mnx0Rha5Fg==}
+
+  cookie@0.7.2:
+    resolution: {integrity: sha512-yki5XnKuf750l50uGTllt6kKILY4nQ1eNIQatoXEByZ5dWgnKqbnqmTrBE5B4N7lrMJKQ2ytWMiTO2o0v6Ew/w==}
+    engines: {node: '>= 0.6'}
 
   copy-anything@3.0.5:
     resolution: {integrity: sha512-yCEafptTtb4bk7GLEQoM8KVJpxAfdBJYaXyzQEgQQQgYrZiDp8SJmGKlYza6CYjEDNstAdNdKA3UuoULlEbS6w==}
@@ -5767,6 +5785,16 @@ snapshots:
       - vti
       - vue-tsc
 
+  '@nuxtjs/supabase@1.4.3':
+    dependencies:
+      '@supabase/ssr': 0.5.2(@supabase/supabase-js@2.47.2)
+      '@supabase/supabase-js': 2.47.2
+      defu: 6.1.4
+      pathe: 1.1.2
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
+
   '@parcel/watcher-android-arm64@2.5.0':
     optional: true
 
@@ -5848,7 +5876,7 @@ snapshots:
 
   '@redocly/config@0.17.1': {}
 
-  '@redocly/openapi-core@1.25.15(supports-color@9.4.0)':
+  '@redocly/openapi-core@1.26.0(supports-color@9.4.0)':
     dependencies:
       '@redocly/ajv': 8.11.2
       '@redocly/config': 0.17.1
@@ -6073,6 +6101,12 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
+  '@supabase/ssr@0.5.2(@supabase/supabase-js@2.47.2)':
+    dependencies:
+      '@supabase/supabase-js': 2.47.2
+      '@types/cookie': 0.6.0
+      cookie: 0.7.2
+
   '@supabase/storage-js@2.7.1':
     dependencies:
       '@supabase/node-fetch': 2.6.15
@@ -6090,6 +6124,8 @@ snapshots:
       - utf-8-validate
 
   '@trysound/sax@0.2.0': {}
+
+  '@types/cookie@0.6.0': {}
 
   '@types/estree@1.0.6': {}
 
@@ -6805,6 +6841,8 @@ snapshots:
   convert-source-map@2.0.0: {}
 
   cookie-es@1.2.2: {}
+
+  cookie@0.7.2: {}
 
   copy-anything@3.0.5:
     dependencies:
@@ -8414,7 +8452,7 @@ snapshots:
 
   openapi-typescript@7.4.4(typescript@5.6.3):
     dependencies:
-      '@redocly/openapi-core': 1.25.15(supports-color@9.4.0)
+      '@redocly/openapi-core': 1.26.0(supports-color@9.4.0)
       ansi-colors: 4.1.3
       change-case: 5.4.4
       parse-json: 8.1.0
