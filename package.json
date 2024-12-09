@@ -39,7 +39,8 @@
     "@nuxt/kit": "^3.14.1592",
     "dotenv": "^16.4.7",
     "drizzle-orm": "^0.37.0",
-    "postgres": "^3.4.5"
+    "postgres": "^3.4.5",
+    "defu": "^6.1.4"
   },
   "devDependencies": {
     "@nuxt/devtools": "^1.6.3",
@@ -51,13 +52,12 @@
     "@supabase/supabase-js": "^2.47.2",
     "@types/node": "latest",
     "changelogen": "^0.5.7",
-    "defu": "^6.1.4",
     "drizzle-kit": "^0.29.1",
     "eslint": "^9.16.0",
     "nuxt": "^3.14.1592",
     "supabase": "^2.0.0",
     "tsx": "^4.19.2",
-    "typescript": "latest",
+    "typescript": "5.6.3",
     "vitest": "^2.1.8",
     "vue-tsc": "^2.1.10"
   }

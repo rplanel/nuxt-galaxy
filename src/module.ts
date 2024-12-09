@@ -36,13 +36,13 @@ export default defineNuxtModule<ModuleOptions>({
     // We create the `experimental` object if it doesn't exist yet
     const resolver = createResolver(import.meta.url)
     // public runtime
-    nuxt.options.runtimeConfig.public.galaxy ||= {}
+    // nuxt.options.runtimeConfig.public.galaxy ||= {}
 
     nuxt.options.runtimeConfig.public.galaxy = defu(nuxt.options.runtimeConfig.public.galaxy, {
       url: moduleOptions.galaxy.url,
     })
     // Private runtime
-    nuxt.options.runtimeConfig.galaxy ||= {}
+    // nuxt.options.runtimeConfig.galaxy ||= {}
     nuxt.options.runtimeConfig.galaxy = defu(nuxt.options.runtimeConfig.galaxy, {
       apiKey: moduleOptions.galaxy.apiKey,
       email: moduleOptions.galaxy.email,
