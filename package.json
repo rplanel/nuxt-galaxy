@@ -5,6 +5,7 @@
   "repository": "your-org/my-module",
   "license": "MIT",
   "type": "module",
+  "packageManager": "pnpm@9.15.0+sha256.09a8fe31a34fda706354680619f4002f4ccef6dadff93240d24ef6c831f0fd28",
   "exports": {
     ".": {
       "types": "./dist/types.d.ts",
@@ -37,10 +38,12 @@
   },
   "dependencies": {
     "@nuxt/kit": "^3.14.1592",
+    "@rplanel/galaxy-js": "github:rplanel/galaxy-js",
+    "@supabase/supabase-js": "^2.47.2",
+    "defu": "^6.1.4",
     "dotenv": "^16.4.7",
     "drizzle-orm": "^0.37.0",
-    "postgres": "^3.4.5",
-    "defu": "^6.1.4"
+    "postgres": "^3.4.5"
   },
   "devDependencies": {
     "@nuxt/devtools": "^1.6.3",
@@ -48,8 +51,6 @@
     "@nuxt/module-builder": "^0.8.4",
     "@nuxt/schema": "^3.14.1592",
     "@nuxt/test-utils": "^3.14.4",
-    "@rplanel/galaxy-js": "github:rplanel/galaxy-js#main",
-    "@supabase/supabase-js": "^2.47.2",
     "@types/node": "latest",
     "changelogen": "^0.5.7",
     "drizzle-kit": "^0.29.1",

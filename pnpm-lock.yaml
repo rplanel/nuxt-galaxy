@@ -11,6 +11,12 @@ importers:
       '@nuxt/kit':
         specifier: ^3.14.1592
         version: 3.14.1592(magicast@0.3.5)(rollup@4.28.1)
+      '@rplanel/galaxy-js':
+        specifier: github:rplanel/galaxy-js
+        version: https://codeload.github.com/rplanel/galaxy-js/tar.gz/a4130c42c374257a13b2d40d34d4f1c6f715fbb8
+      '@supabase/supabase-js':
+        specifier: ^2.47.2
+        version: 2.47.2
       defu:
         specifier: ^6.1.4
         version: 6.1.4
@@ -39,12 +45,6 @@ importers:
       '@nuxt/test-utils':
         specifier: ^3.14.4
         version: 3.15.1(@types/node@22.10.1)(magicast@0.3.5)(rollup@4.28.1)(terser@5.37.0)(typescript@5.6.3)(vitest@2.1.8(@types/node@22.10.1)(terser@5.37.0))
-      '@rplanel/galaxy-js':
-        specifier: github:rplanel/galaxy-js#main
-        version: https://codeload.github.com/rplanel/galaxy-js/tar.gz/a4130c42c374257a13b2d40d34d4f1c6f715fbb8
-      '@supabase/supabase-js':
-        specifier: ^2.47.2
-        version: 2.47.2
       '@types/node':
         specifier: latest
         version: 22.10.1
