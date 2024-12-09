@@ -1,9 +1,9 @@
-import type { SupabaseClient, User } from "@supabase/supabase-js";
+import type { SupabaseClient, User } from '@supabase/supabase-js'
 // import { createEventStream } from "h3";
-import type { Database } from "../../types/supabase";
-import { analyses } from "../db/schema/galaxy/analyses";
-import { useDrizzle } from "../utils/drizzle";
-import { eq } from 'drizzle-orm';
+import { eq } from 'drizzle-orm'
+import type { Database } from '../../types/supabase'
+import { analyses } from '../db/schema/galaxy/analyses'
+import { useDrizzle } from '../utils/drizzle'
 
 function setIntervalWithPromise(target: any) {
   return async function (...args: any[]) {
@@ -15,28 +15,27 @@ function setIntervalWithPromise(target: any) {
   }
 }
 
-
-
 export default defineEventHandler(async (event) => {
-  const { user, client }: { user: User, client: SupabaseClient<Database> } = event.context?.supabase;
-  let syncIntervalId: any | number | undefined = undefined
-  // const body = await readBody(event)
-  if (!syncIntervalId) {
-    syncIntervalId = setInterval(setIntervalWithPromise(async () => {
-      await synchronizeAnalyses(client, user.id)
-      const userAnalysesDb = await useDrizzle()
-        .select()
-        .from(analyses)
-        .where(eq(analyses.ownerId, user.id))
-      if (userAnalysesDb.every((d) => d.isSync)) {
-        stopSync()
-      }
-    }), 6000)
-  }
+  if (event.context?.supabase) {
+    const { user, client }: { user: User, client: SupabaseClient<Database> } = event.context.supabase
+    console.log(user)
+    let syncIntervalId: any | number | undefined = undefined
+    // const body = await readBody(event)
+    if (!syncIntervalId) {
+      syncIntervalId = setInterval(setIntervalWithPromise(async () => {
+        await synchronizeAnalyses(client, user.id)
+        const userAnalysesDb = await useDrizzle()
+          .select()
+          .from(analyses)
+          .where(eq(analyses.ownerId, user.id))
+        if (userAnalysesDb.every(d => d.isSync)) {
+          stopSync()
+        }
+      }), 6000)
+    }
 
-  function stopSync() {
-    clearInterval(syncIntervalId)
+    function stopSync() {
+      clearInterval(syncIntervalId)
+    }
   }
-
 })
-

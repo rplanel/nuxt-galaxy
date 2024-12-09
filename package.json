@@ -58,6 +58,7 @@
     "changelogen": "^0.5.7",
     "drizzle-kit": "^0.29.1",
     "eslint": "^9.16.0",
+    "nitropack": "^2.10.4",
     "nuxt": "^3.14.1592",
     "supabase": "^2.0.0",
     "tsx": "^4.19.2",

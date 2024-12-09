@@ -3,6 +3,7 @@
     Nuxt module playground!
     {{ fileSize }}
   </div>
+  <NuxtPage />
 </template>
 
 <script setup>
