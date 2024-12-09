@@ -73,6 +73,11 @@ export default defineNuxtModule<ModuleOptions>({
 
     // Galaxy
     addServerHandler({
+      route: '/sync',
+      handler: resolver.resolve('./runtime/server/routes.sync'),
+      method: 'get',
+    })
+    addServerHandler({
       route: '/api/galaxy/histories',
       handler: resolver.resolve('./runtime/server/api/galaxy/histories.get'),
       method: 'get',
