@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.0.3-alpha.2](https://github.com/rplanel/nuxt-galaxy/compare/v0.0.3-alpha.1...v0.0.3-alpha.2) (2024-12-10)
+
+### Bug Fixes
+
+* add supabase server middleware ([deb3810](https://github.com/rplanel/nuxt-galaxy/commit/deb3810af5ddce7e8d7ed48b2e134f3db1433825))
+
 ## [0.0.3-alpha.1](https://github.com/rplanel/nuxt-galaxy/compare/v0.0.3-alpha.0...v0.0.3-alpha.1) (2024-12-10)
 
 ### Bug Fixes
