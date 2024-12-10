@@ -35,7 +35,7 @@ export async function uploadDatasets(
             return useDrizzle()
               .insert(datasets)
               .values({
-                name,
+                datasetName: name,
                 ownerId,
                 storageObjectId,
                 historyId,

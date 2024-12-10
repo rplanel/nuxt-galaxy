@@ -61,7 +61,7 @@ export async function getOrCreateInputDataset(
           .insert(datasets)
           .values({
             galaxyId: galaxyDatasetId,
-            name: galaxyDataset.name,
+            datasetName: galaxyDataset.name,
             ownerId,
             storageObjectId: data.id,
             historyId,
