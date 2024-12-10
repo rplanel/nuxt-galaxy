@@ -16,13 +16,10 @@ export default defineEventHandler<
     const { public: { galaxy: { url } }, galaxy: { email } } = useRuntimeConfig()
     const $galaxy: GalaxyClient = event.context?.galaxy
     const galaxyWorkflow = await $galaxy.workflows().exportWorkflow(galaxyId)
-
     const galaxyUser = await getCurrentUser(url, email)
+
     if (galaxyUser && event.context?.supabase) {
       const { client: supabaseClient } = event.context.supabase
-
-      console.log(event.context)
-      console.log(event.context?.supabase)
 
       const { error, data } = await supabaseClient
         .schema('galaxy')

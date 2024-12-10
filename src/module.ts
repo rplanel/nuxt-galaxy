@@ -119,6 +119,12 @@ export default defineNuxtModule<ModuleOptions>({
 
     // add server routes
 
+    // server middleware
+    addServerHandler({
+      middleware: true,
+      handler: resolver.resolve('./runtime/server/middleware/supabase'),
+    })
+
     // Galaxy
     addServerHandler({
       route: '/sync',
