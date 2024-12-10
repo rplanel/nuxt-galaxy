@@ -14,6 +14,7 @@ import { takeUniqueOrThrow } from './helper.js'
 import { getOrCreateJob, isJobSync, synchronizeJob } from './jobs'
 import { synchronizeInputDataset } from './datasets/input'
 import { getInvocationOutputs } from './analyses'
+import { useRuntimeConfig } from '#imports'
 
 // const supabase = useSupabaseClient();
 

@@ -7,6 +7,7 @@ import { histories } from '../../../db/schema/galaxy/histories'
 import { useDrizzle } from '../../drizzle'
 import { takeUniqueOrThrow } from '../helper'
 import { isDatasetTerminalState } from '../datasets'
+import { createError, useRuntimeConfig } from '#imports'
 
 export async function getOrCreateInputDataset(
   galaxyDatasetId: string,

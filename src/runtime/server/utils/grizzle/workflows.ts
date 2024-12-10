@@ -4,6 +4,7 @@ import { workflows } from '../../db/schema/galaxy/workflows'
 import { useDrizzle } from '../drizzle'
 import { takeUniqueOrThrow } from './helper'
 import { getCurrentUser } from './user'
+import { useRuntimeConfig } from '#imports'
 
 export async function getCurrentGalaxyWorkflow() {
   const { public: { galaxy: { url } }, galaxy: { email } } = useRuntimeConfig()

@@ -1,6 +1,7 @@
 import type { GalaxyClient } from '@rplanel/galaxy-js'
 import { createError, defineEventHandler, readBody } from 'h3'
 import { getCurrentUser } from '../../utils/grizzle/user'
+import { useRuntimeConfig } from '#imports'
 
 export default defineEventHandler<
   {

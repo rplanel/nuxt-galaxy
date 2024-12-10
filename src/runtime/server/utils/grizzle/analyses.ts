@@ -9,6 +9,7 @@ import type { Database } from '../../../types/supabase'
 import { useDrizzle } from '../drizzle'
 import { isHistorySync, synchronizeHistory } from './histories'
 import { takeUniqueOrThrow } from './helper'
+import { useRuntimeConfig } from '#imports'
 
 export async function runAnalysis(
   analysisName: string,

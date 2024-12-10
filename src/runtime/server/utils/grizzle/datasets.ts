@@ -3,6 +3,7 @@ import type { Datamap, DatasetState, DatasetTerminalState } from '@rplanel/galax
 import { datasets } from '../../db/schema/galaxy/datasets.js'
 import { useDrizzle } from '../drizzle.js'
 import { takeUniqueOrThrow } from './helper.js'
+import { useRuntimeConfig } from '#imports'
 
 export async function uploadDatasets(
   datamap: Datamap,

@@ -6,6 +6,7 @@ import { useDrizzle } from '../drizzle'
 import { jobs } from '../../db/schema/galaxy/jobs'
 import { isOutputDatasetSync, synchronizeOutputDataset } from './datasets/output.js'
 import { takeUniqueOrThrow } from './helper'
+import { useRuntimeConfig } from '#imports'
 
 export async function getOrCreateJob(analysisId: number, galaxyJobId: string, stepId: number, ownerId: string) {
   // check if the job exists

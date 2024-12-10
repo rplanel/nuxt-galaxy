@@ -1,5 +1,5 @@
 import { GalaxyClient } from '@rplanel/galaxy-js'
-import { defineNitroPlugin } from '#imports'
+import { defineNitroPlugin, useRuntimeConfig } from '#imports'
 
 export default defineNitroPlugin((nitroApp) => {
   nitroApp.hooks.hook('request', (event) => {
