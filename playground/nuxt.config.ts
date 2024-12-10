@@ -4,13 +4,12 @@ export default defineNuxtConfig({
     autoImport: true,
   },
   devtools: { enabled: true },
-
-  compatibilityDate: '2024-12-07',
-  galaxy: {
-    galaxy: {
-      apiKey: 'my-api-key',
-      email: 'myemail@example.com',
-      url: 'my-url',
+  runtimeConfig: {
+    public: {
+      supabase: { url: 'http://localhost:54323', key: 'anno-key' },
     },
+
   },
+  compatibilityDate: '2024-12-07',
+
 })
