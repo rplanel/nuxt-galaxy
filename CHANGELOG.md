@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.0.3-alpha.1](https://github.com/rplanel/nuxt-galaxy/compare/v0.0.3-alpha.0...v0.0.3-alpha.1) (2024-12-10)
+
+### Bug Fixes
+
+* change column name -> datasetName to avoid ambiguity with views ([8fd7394](https://github.com/rplanel/nuxt-galaxy/commit/8fd73949d49490f3679956ea3a5d7580f21f3149))
+* error TS2742: The inferred type of default for middleware auth cf: https://github.com/nuxt/module-builder/issues/141 ([94b010b](https://github.com/rplanel/nuxt-galaxy/commit/94b010b574f9b87fd678e46bf0e702b6f8837f3b))
+* migration failed because of same column name ([3816231](https://github.com/rplanel/nuxt-galaxy/commit/3816231885f0117d8b97be7c42f48f0f328dee08))
+
 ## [0.0.3-alpha.0](https://github.com/rplanel/nuxt-galaxy/compare/v0.0.2...v0.0.3-alpha.0) (2024-12-10)
 
 ### Bug Fixes
