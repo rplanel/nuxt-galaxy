@@ -11,12 +11,15 @@ importers:
       '@nuxt/kit':
         specifier: ^3.14.1592
         version: 3.14.1592(magicast@0.3.5)(rollup@4.28.1)
+      '@nuxtjs/supabase':
+        specifier: ^1.4.3
+        version: 1.4.3
       '@rplanel/galaxy-js':
         specifier: github:rplanel/galaxy-js
         version: https://codeload.github.com/rplanel/galaxy-js/tar.gz/a4130c42c374257a13b2d40d34d4f1c6f715fbb8
       '@supabase/supabase-js':
         specifier: ^2.47.2
-        version: 2.47.2
+        version: 2.47.3
       defu:
         specifier: ^6.1.4
         version: 6.1.4
@@ -45,9 +48,6 @@ importers:
       '@nuxt/test-utils':
         specifier: ^3.14.4
         version: 3.15.1(@types/node@22.10.1)(magicast@0.3.5)(rollup@4.28.1)(terser@5.37.0)(typescript@5.6.3)(vitest@2.1.8(@types/node@22.10.1)(terser@5.37.0))
-      '@nuxtjs/supabase':
-        specifier: ^1.4.3
-        version: 1.4.3
       '@types/node':
         specifier: latest
         version: 22.10.1
@@ -1501,8 +1501,8 @@ packages:
   '@supabase/postgrest-js@1.16.3':
     resolution: {integrity: sha512-HI6dsbW68AKlOPofUjDTaosiDBCtW4XAm0D18pPwxoW3zKOE2Ru13Z69Wuys9fd6iTpfDViNco5sgrtnP0666A==}
 
-  '@supabase/realtime-js@2.10.9':
-    resolution: {integrity: sha512-0AjN65VDNIScZzrrPaVvlND4vbgVS+j9Wcy3zf7e+l9JY4IwCTahFenPLcKy9bkr7KY0wfB7MkipZPKxMaDnjw==}
+  '@supabase/realtime-js@2.11.2':
+    resolution: {integrity: sha512-u/XeuL2Y0QEhXSoIPZZwR6wMXgB+RQbJzG9VErA3VghVt7uRfSVsjeqd7m5GhX3JR6dM/WRmLbVR8URpDWG4+w==}
 
   '@supabase/ssr@0.5.2':
     resolution: {integrity: sha512-n3plRhr2Bs8Xun1o4S3k1CDv17iH5QY9YcoEvXX3bxV1/5XSasA0mNXYycFmADIdtdE6BG9MRjP5CGIs8qxC8A==}
@@ -1512,8 +1512,8 @@ packages:
   '@supabase/storage-js@2.7.1':
     resolution: {integrity: sha512-asYHcyDR1fKqrMpytAS1zjyEfvxuOIp1CIXX7ji4lHHcJKqyk+sLl/Vxgm4sN6u8zvuUtae9e4kDxQP2qrwWBA==}
 
-  '@supabase/supabase-js@2.47.2':
-    resolution: {integrity: sha512-BdP5hY29eCROJRV61WCM+OzcTSjaSzZe0H+2l88tOwmTG+1XqCiVYtZnUNIh12V8g5gdmQL5urp1pSYARbl38A==}
+  '@supabase/supabase-js@2.47.3':
+    resolution: {integrity: sha512-AmwTyHtOXdfjLVKiM+neYItB62T4gAl1jV8ZrIg3yp1Z1NICzYfsujJDSuELkrLkYvU/RGfZXpIBheDTt7fmwA==}
 
   '@trysound/sax@0.2.0':
     resolution: {integrity: sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA==}
@@ -5787,8 +5787,8 @@ snapshots:
 
   '@nuxtjs/supabase@1.4.3':
     dependencies:
-      '@supabase/ssr': 0.5.2(@supabase/supabase-js@2.47.2)
-      '@supabase/supabase-js': 2.47.2
+      '@supabase/ssr': 0.5.2(@supabase/supabase-js@2.47.3)
+      '@supabase/supabase-js': 2.47.3
       defu: 6.1.4
       pathe: 1.1.2
     transitivePeerDependencies:
@@ -6091,7 +6091,7 @@ snapshots:
     dependencies:
       '@supabase/node-fetch': 2.6.15
 
-  '@supabase/realtime-js@2.10.9':
+  '@supabase/realtime-js@2.11.2':
     dependencies:
       '@supabase/node-fetch': 2.6.15
       '@types/phoenix': 1.6.6
@@ -6101,9 +6101,9 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  '@supabase/ssr@0.5.2(@supabase/supabase-js@2.47.2)':
+  '@supabase/ssr@0.5.2(@supabase/supabase-js@2.47.3)':
     dependencies:
-      '@supabase/supabase-js': 2.47.2
+      '@supabase/supabase-js': 2.47.3
       '@types/cookie': 0.6.0
       cookie: 0.7.2
 
@@ -6111,13 +6111,13 @@ snapshots:
     dependencies:
       '@supabase/node-fetch': 2.6.15
 
-  '@supabase/supabase-js@2.47.2':
+  '@supabase/supabase-js@2.47.3':
     dependencies:
       '@supabase/auth-js': 2.66.1
       '@supabase/functions-js': 2.4.3
       '@supabase/node-fetch': 2.6.15
       '@supabase/postgrest-js': 1.16.3
-      '@supabase/realtime-js': 2.10.9
+      '@supabase/realtime-js': 2.11.2
       '@supabase/storage-js': 2.7.1
     transitivePeerDependencies:
       - bufferutil

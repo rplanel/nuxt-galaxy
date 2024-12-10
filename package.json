@@ -41,6 +41,7 @@
   },
   "dependencies": {
     "@nuxt/kit": "^3.14.1592",
+    "@nuxtjs/supabase": "^1.4.3",
     "@rplanel/galaxy-js": "github:rplanel/galaxy-js",
     "@supabase/supabase-js": "^2.47.2",
     "defu": "^6.1.4",
@@ -54,7 +55,6 @@
     "@nuxt/module-builder": "^0.8.4",
     "@nuxt/schema": "^3.14.1592",
     "@nuxt/test-utils": "^3.14.4",
-    "@nuxtjs/supabase": "^1.4.3",
     "@types/node": "latest",
     "changelogen": "^0.5.7",
     "drizzle-kit": "^0.29.1",

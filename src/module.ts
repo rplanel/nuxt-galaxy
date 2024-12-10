@@ -1,13 +1,33 @@
-import { addImportsDir, addRouteMiddleware, addServerHandler, addServerImportsDir, addServerPlugin, createResolver, defineNuxtModule, installModule } from '@nuxt/kit'
+import { addImportsDir, addRouteMiddleware, addServerHandler, addServerImportsDir, addServerPlugin, createResolver, defineNuxtModule, installModule,
+} from '@nuxt/kit'
 import { defu } from 'defu'
 
+export * from './runtime/types'
+
 export interface ModuleOptions {
-  galaxy: {
-    url: string
-    apiKey: string
-    email: string
+  url: string
+  apiKey: string
+  email: string
+}
+
+declare module 'nuxt/schema' {
+  interface RuntimeConfig {
+    galaxy: {
+      apiKey: string
+      email: string
+      url: string
+
+    }
   }
 }
+
+// declare module 'nuxt/schema' {
+//   interface PublicRuntimeConfig {
+//     galaxy: {
+//       url: string
+//     }
+//   }
+// }
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
@@ -23,11 +43,10 @@ export default defineNuxtModule<ModuleOptions>({
   },
   // Default configuration options for your module, can also be a function returning those
   defaults: {
-    galaxy: {
-      url: process.env.GALAXY_URL as string,
-      apiKey: process.env.GALAXY_API_KEY as string,
-      email: process.env.GALAXY_EMAIL as string,
-    },
+    url: process.env.NUXT_PUBLIC_GALAXY_URL as string,
+    apiKey: process.env.NUXT_GALAXY_API_KEY as string,
+    email: process.env.NUXT_GALAXY_EMAIL as string,
+
   },
   // Shorthand sugar to register Nuxt hooks
   hooks: {},
@@ -37,16 +56,25 @@ export default defineNuxtModule<ModuleOptions>({
     const resolver = createResolver(import.meta.url)
     // public runtime
     // nuxt.options.runtimeConfig.public.galaxy ||= {}
-
-    nuxt.options.runtimeConfig.public.galaxy = defu(nuxt.options.runtimeConfig.public.galaxy, {
-      url: moduleOptions.galaxy.url,
-    })
+    const runtimeConfig = nuxt.options.runtimeConfig
+    nuxt.options.runtimeConfig.public.galaxy = defu(
+      runtimeConfig.public.galaxy || {},
+      { url: moduleOptions.url },
+      {
+        url: process.env.NUXT_PUBLIC_GALAXY_URL || '',
+      })
     // Private runtime
     // nuxt.options.runtimeConfig.galaxy ||= {}
-    nuxt.options.runtimeConfig.galaxy = defu(nuxt.options.runtimeConfig.galaxy, {
-      apiKey: moduleOptions.galaxy.apiKey,
-      email: moduleOptions.galaxy.email,
-    })
+    nuxt.options.runtimeConfig.galaxy = defu(
+      runtimeConfig.galaxy || {},
+      {
+        apiKey: moduleOptions.apiKey,
+        email: moduleOptions.email,
+      },
+      {
+        apiKey: process.env.NUXT_GALAXY_API_KEY || '',
+        email: process.env.NUXT_GALAXY_EMAIL || '',
+      })
 
     // Make sure url and key are set
     if (!nuxt.options.runtimeConfig.public.galaxy.url) {
@@ -55,26 +83,26 @@ export default defineNuxtModule<ModuleOptions>({
     if (!nuxt.options.runtimeConfig.galaxy.apiKey) {
       console.warn('Missing galaxy api key, set it either in `nuxt.config.js` or via env variable')
     }
+    // const runtimeDir = resolver.resolve('./runtime')
 
     await installModule('@nuxtjs/supabase', {
       // module configuration
-      exposeConfig: true,
-      config: {
-        redirectOptions: {
-          login: '/login',
-          callback: '/confirm',
-          include: ['/admin(/*)?'],
-          exclude: [],
-          cookieRedirect: true,
-        },
-        clientOptions: {
-          db: {
-            schema: 'galaxy',
-          },
-        },
-        types: './runtime/types/supabase',
+      redirectOptions: {
+        login: '/login',
+        callback: '/confirm',
+        include: ['/admin(/*)?'],
+        exclude: [],
+        cookieRedirect: true,
       },
+      clientOptions: {
+        db: {
+          schema: 'galaxy',
+        },
+      },
+      types: './runtime/types/supabase',
     })
+
+    // nuxt.options.build.transpile.push(runtimeDir)
 
     // From the runtime directory
     addImportsDir(resolver.resolve('./runtime/app/composables'))
