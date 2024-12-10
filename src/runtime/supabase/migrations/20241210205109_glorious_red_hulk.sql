@@ -1,41 +1,11 @@
 CREATE SCHEMA "galaxy";
 --> statement-breakpoint
-DO $$ BEGIN
- CREATE TYPE "galaxy"."dataset_state" AS ENUM('ok', 'empty', 'error', 'discarded', 'failed_metadata', 'new', 'upload', 'queued', 'running', 'paused', 'setting_metadata', 'deferred');
-EXCEPTION
- WHEN duplicate_object THEN null;
-END $$;
---> statement-breakpoint
-DO $$ BEGIN
- CREATE TYPE "galaxy"."history_state" AS ENUM('new', 'upload', 'queued', 'running', 'ok', 'empty', 'error', 'paused', 'setting_metadata', 'failed_metadata', 'deferred', 'discarded');
-EXCEPTION
- WHEN duplicate_object THEN null;
-END $$;
---> statement-breakpoint
-DO $$ BEGIN
- CREATE TYPE "galaxy"."invocation_state" AS ENUM('cancelled', 'failed', 'scheduled', 'new', 'ready', 'cancelling');
-EXCEPTION
- WHEN duplicate_object THEN null;
-END $$;
---> statement-breakpoint
-DO $$ BEGIN
- CREATE TYPE "galaxy"."job_state" AS ENUM('deleted', 'deleting', 'error', 'ok', 'new', 'resubmitted', 'upload', 'waiting', 'queued', 'running', 'failed', 'paused', 'stop', 'stopped', 'skipped');
-EXCEPTION
- WHEN duplicate_object THEN null;
-END $$;
---> statement-breakpoint
-DO $$ BEGIN
- CREATE TYPE "galaxy"."role_permissions_type" AS ENUM('workflows.insert', 'workflows.delete', 'instances.insert', 'instances.delete');
-EXCEPTION
- WHEN duplicate_object THEN null;
-END $$;
---> statement-breakpoint
-DO $$ BEGIN
- CREATE TYPE "galaxy"."role_type" AS ENUM('admin', 'user');
-EXCEPTION
- WHEN duplicate_object THEN null;
-END $$;
---> statement-breakpoint
+CREATE TYPE "galaxy"."dataset_state" AS ENUM('ok', 'empty', 'error', 'discarded', 'failed_metadata', 'new', 'upload', 'queued', 'running', 'paused', 'setting_metadata', 'deferred');--> statement-breakpoint
+CREATE TYPE "galaxy"."history_state" AS ENUM('new', 'upload', 'queued', 'running', 'ok', 'empty', 'error', 'paused', 'setting_metadata', 'failed_metadata', 'deferred', 'discarded');--> statement-breakpoint
+CREATE TYPE "galaxy"."invocation_state" AS ENUM('cancelled', 'failed', 'scheduled', 'new', 'ready', 'cancelling');--> statement-breakpoint
+CREATE TYPE "galaxy"."job_state" AS ENUM('deleted', 'deleting', 'error', 'ok', 'new', 'resubmitted', 'upload', 'waiting', 'queued', 'running', 'failed', 'paused', 'stop', 'stopped', 'skipped');--> statement-breakpoint
+CREATE TYPE "galaxy"."role_permissions_type" AS ENUM('workflows.insert', 'workflows.delete', 'instances.insert', 'instances.delete');--> statement-breakpoint
+CREATE TYPE "galaxy"."role_type" AS ENUM('admin', 'user');--> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "galaxy"."analyses" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"name" varchar(256) NOT NULL,
@@ -81,8 +51,8 @@ CREATE TABLE IF NOT EXISTS "galaxy"."datasets" (
 	"extension" varchar(100) NOT NULL,
 	"file_size" integer NOT NULL,
 	"data_lines" integer,
+	"dataset_name" varchar(256) NOT NULL,
 	"galaxy_id" varchar(256) NOT NULL,
-	"name" varchar(256) NOT NULL,
 	"annotation" varchar(200),
 	CONSTRAINT "datasets_uuid_unique" UNIQUE("uuid"),
 	CONSTRAINT "datasets_history_id_galaxy_id_unique" UNIQUE("history_id","galaxy_id")
@@ -342,3 +312,5 @@ DO $$ BEGIN
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
+--> statement-breakpoint
+CREATE VIEW "galaxy"."datasets_with_storage_path" AS (select "galaxy"."datasets"."id", "galaxy"."datasets"."owner_id", "galaxy"."datasets"."history_id", "galaxy"."datasets"."storage_object_id", "galaxy"."datasets"."created_at", "galaxy"."datasets"."uuid", "galaxy"."datasets"."extension", "galaxy"."datasets"."file_size", "galaxy"."datasets"."data_lines", "galaxy"."datasets"."dataset_name", "galaxy"."datasets"."galaxy_id", "galaxy"."datasets"."annotation", "storage"."objects"."name" from "galaxy"."datasets" inner join "storage"."objects" on "galaxy"."datasets"."storage_object_id" = "storage"."objects"."id");
