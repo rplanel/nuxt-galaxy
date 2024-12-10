@@ -19,6 +19,9 @@ import { analysisOuputs } from './analysisOutputs'
 /**
  * Datasets
  */
+
+const { name, ...galaxyItemNoName } = galaxyItem
+
 export const datasets = galaxy.table('datasets', {
   id: serial('id').primaryKey(),
   ownerId: uuid('owner_id').notNull().references(() => owners.id, { onDelete: 'cascade' }),
@@ -31,7 +34,8 @@ export const datasets = galaxy.table('datasets', {
   extension: varchar('extension', { length: 100 }).notNull(),
   fileSize: integer('file_size').notNull(),
   dataLines: integer('data_lines'),
-  ...galaxyItem,
+  datasetName: varchar('dataset_name', { length: 256 }).notNull(),
+  ...galaxyItemNoName,
 }, t => ({
   unique: unique().on(t.historyId, t.galaxyId),
 }),
