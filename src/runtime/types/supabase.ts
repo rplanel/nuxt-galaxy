@@ -109,6 +109,13 @@ export type Database = {
             referencedRelation: 'datasets'
             referencedColumns: ['id']
           },
+          {
+            foreignKeyName: 'analysis_inputs_dataset_id_datasets_id_fk'
+            columns: ['dataset_id']
+            isOneToOne: true
+            referencedRelation: 'datasets_with_storage_path'
+            referencedColumns: ['id']
+          },
         ]
       }
       analysis_ouputs: {
@@ -149,6 +156,13 @@ export type Database = {
             referencedColumns: ['id']
           },
           {
+            foreignKeyName: 'analysis_ouputs_dataset_id_datasets_id_fk'
+            columns: ['dataset_id']
+            isOneToOne: false
+            referencedRelation: 'datasets_with_storage_path'
+            referencedColumns: ['id']
+          },
+          {
             foreignKeyName: 'analysis_ouputs_job_id_jobs_id_fk'
             columns: ['job_id']
             isOneToOne: false
@@ -162,12 +176,12 @@ export type Database = {
           annotation: string | null
           created_at: string
           data_lines: number | null
+          dataset_name: string
           extension: string
           file_size: number
           galaxy_id: string
           history_id: number
           id: number
-          name: string
           owner_id: string
           storage_object_id: string
           uuid: string
@@ -176,12 +190,12 @@ export type Database = {
           annotation?: string | null
           created_at?: string
           data_lines?: number | null
+          dataset_name: string
           extension: string
           file_size: number
           galaxy_id: string
           history_id: number
           id?: number
-          name: string
           owner_id: string
           storage_object_id: string
           uuid: string
@@ -190,12 +204,12 @@ export type Database = {
           annotation?: string | null
           created_at?: string
           data_lines?: number | null
+          dataset_name?: string
           extension?: string
           file_size?: number
           galaxy_id?: string
           history_id?: number
           id?: number
-          name?: string
           owner_id?: string
           storage_object_id?: string
           uuid?: string
@@ -229,6 +243,13 @@ export type Database = {
             columns: ['dataset_id']
             isOneToOne: false
             referencedRelation: 'datasets'
+            referencedColumns: ['id']
+          },
+          {
+            foreignKeyName: 'datasets_to_tags_dataset_id_datasets_id_fk'
+            columns: ['dataset_id']
+            isOneToOne: false
+            referencedRelation: 'datasets_with_storage_path'
             referencedColumns: ['id']
           },
           {
@@ -358,6 +379,32 @@ export type Database = {
           },
         ]
       }
+      role_permissions: {
+        Row: {
+          id: number
+          permission: Database['galaxy']['Enums']['role_permissions_type']
+          role_id: number
+        }
+        Insert: {
+          id?: number
+          permission: Database['galaxy']['Enums']['role_permissions_type']
+          role_id: number
+        }
+        Update: {
+          id?: number
+          permission?: Database['galaxy']['Enums']['role_permissions_type']
+          role_id?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: 'role_permissions_role_id_roles_id_fk'
+            columns: ['role_id']
+            isOneToOne: false
+            referencedRelation: 'roles'
+            referencedColumns: ['id']
+          },
+        ]
+      }
       roles: {
         Row: {
           id: number
@@ -435,25 +482,25 @@ export type Database = {
           },
         ]
       }
-      user_profiles: {
+      user_roles: {
         Row: {
           id: number
-          owner_id: string
           role_id: number
+          user_id: string
         }
         Insert: {
           id?: number
-          owner_id: string
           role_id: number
+          user_id: string
         }
         Update: {
           id?: number
-          owner_id?: string
           role_id?: number
+          user_id?: string
         }
         Relationships: [
           {
-            foreignKeyName: 'user_profiles_role_id_roles_id_fk'
+            foreignKeyName: 'user_roles_role_id_roles_id_fk'
             columns: ['role_id']
             isOneToOne: false
             referencedRelation: 'roles'
@@ -531,10 +578,46 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      datasets_with_storage_path: {
+        Row: {
+          annotation: string | null
+          created_at: string | null
+          data_lines: number | null
+          dataset_name: string | null
+          extension: string | null
+          file_size: number | null
+          galaxy_id: string | null
+          history_id: number | null
+          id: number | null
+          name: string | null
+          owner_id: string | null
+          storage_object_id: string | null
+          uuid: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: 'datasets_history_id_histories_id_fk'
+            columns: ['history_id']
+            isOneToOne: false
+            referencedRelation: 'histories'
+            referencedColumns: ['id']
+          },
+        ]
+      }
     }
     Functions: {
-      [_ in never]: never
+      authorize: {
+        Args: {
+          requested_permission: Database['galaxy']['Enums']['role_permissions_type']
+        }
+        Returns: boolean
+      }
+      custom_access_token_hook: {
+        Args: {
+          event: Json
+        }
+        Returns: Json
+      }
     }
     Enums: {
       dataset_state:
@@ -586,6 +669,11 @@ export type Database = {
         | 'stop'
         | 'stopped'
         | 'skipped'
+      role_permissions_type:
+        | 'workflows.insert'
+        | 'workflows.delete'
+        | 'instances.insert'
+        | 'instances.delete'
       role_type: 'admin' | 'user'
     }
     CompositeTypes: {

@@ -2,8 +2,9 @@ import { addImportsDir, addRouteMiddleware, addServerHandler, addServerImportsDi
 } from '@nuxt/kit'
 import { defu } from 'defu'
 
-export * from './runtime/types'
+import type { RoleType } from './runtime/types'
 
+export type { RoleType }
 export interface ModuleOptions {
   url: string
   apiKey: string
@@ -54,6 +55,11 @@ export default defineNuxtModule<ModuleOptions>({
   async setup(moduleOptions, nuxt) {
     // We create the `experimental` object if it doesn't exist yet
     const resolver = createResolver(import.meta.url)
+
+    // nuxt.options.alias['#galaxy'] = resolver.resolve(
+    //   './runtime/types/index',
+    // )
+
     // public runtime
     // nuxt.options.runtimeConfig.public.galaxy ||= {}
     const runtimeConfig = nuxt.options.runtimeConfig
