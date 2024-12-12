@@ -5,7 +5,7 @@ import { useRuntimeConfig } from '#imports'
 
 export default defineEventHandler(async (event) => {
   const cookies = parseCookies(event)
-  const { supabase: { authTokenName } } = useRuntimeConfig()
+  const { authTokenName } = useRuntimeConfig()
   if (cookies[authTokenName]) {
     const user = await serverSupabaseUser(event)
     const client = await serverSupabaseClient<Database>(event)
