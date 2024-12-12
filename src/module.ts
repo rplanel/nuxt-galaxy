@@ -8,16 +8,16 @@ export interface ModuleOptions {
   email: string
 }
 
-declare module 'nuxt/schema' {
-  interface RuntimeConfig {
-    galaxy: {
-      apiKey: string
-      email: string
-      url: string
+// declare module 'nuxt/schema' {
+//   interface RuntimeConfig {
+//     galaxy: {
+//       apiKey: string
+//       email: string
+//       url: string
 
-    }
-  }
-}
+//     }
+//   }
+// }
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
