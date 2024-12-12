@@ -1,5 +1,5 @@
 import { defineEventHandler, parseCookies } from 'h3'
-import type { Database } from '../../types/supabase'
+import type { Database } from '../../types/database'
 import { serverSupabaseClient, serverSupabaseUser } from '#supabase/server'
 import { useRuntimeConfig } from '#imports'
 

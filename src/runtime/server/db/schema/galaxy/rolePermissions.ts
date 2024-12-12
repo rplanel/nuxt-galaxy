@@ -1,7 +1,7 @@
 import { integer, serial, unique } from 'drizzle-orm/pg-core'
 import { relations } from 'drizzle-orm'
 import { galaxy } from '../galaxy'
-import { RolePermissions, type RolePermission } from '../../../../types'
+import { RolePermissions, type RolePermission } from '../../../../types/nuxt-galaxy'
 import { roles } from './roles'
 
 export const rolePermissionsTypeEnum = galaxy.enum(

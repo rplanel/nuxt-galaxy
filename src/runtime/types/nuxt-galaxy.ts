@@ -6,7 +6,7 @@ import type { instances } from '../server/db/schema/galaxy/instances'
 import type { histories } from '../server/db/schema/galaxy/histories'
 import type { analyses } from '../server/db/schema/galaxy/analyses'
 import type { datasets } from '../server/db/schema/galaxy/datasets'
-import type { Database } from './supabase'
+import type { Database } from './database'
 
 export interface WorkflowToolsParameters {
   step: WorkflowStep

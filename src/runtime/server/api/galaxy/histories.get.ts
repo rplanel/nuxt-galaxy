@@ -1,7 +1,7 @@
 import type { GalaxyClient } from '@rplanel/galaxy-js'
 import type { SupabaseClient, User } from '@supabase/supabase-js'
 import { defineEventHandler } from 'h3'
-import type { Database } from '../../../types/supabase'
+import type { Database } from '../../../types/database'
 
 export default defineEventHandler(async (event) => {
   if (event.context?.supabase) {

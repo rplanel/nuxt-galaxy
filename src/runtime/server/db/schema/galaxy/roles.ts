@@ -1,7 +1,7 @@
 import { serial } from 'drizzle-orm/pg-core'
 import { relations } from 'drizzle-orm'
 import { galaxy } from '../galaxy'
-import { RoleTypes, type RoleType } from '../../../../types'
+import { RoleTypes, type RoleType } from '../../../../types/nuxt-galaxy'
 import { userRoles } from './userRoles'
 import { rolePermissions } from './rolePermissions'
 

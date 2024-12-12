@@ -1,4 +1,4 @@
-import { addImportsDir, addRouteMiddleware, addServerHandler, addServerImportsDir, addServerPlugin, addTypeTemplate, createResolver, defineNuxtModule, installModule,
+import { addImportsDir, addRouteMiddleware, addServerHandler, addServerImportsDir, addServerPlugin, addTemplate, createResolver, defineNuxtModule, installModule,
 } from '@nuxt/kit'
 import { defu } from 'defu'
 
@@ -44,7 +44,7 @@ export default defineNuxtModule<ModuleOptions>({
   async setup(moduleOptions, nuxt) {
     // We create the `experimental` object if it doesn't exist yet
     const resolver = createResolver(import.meta.url)
-
+    // resolver.resolvePath('/runtime',{})
     // nuxt.options.alias['#galaxy'] = resolver.resolve(
     //   './runtime/types/index',
     // )
@@ -197,15 +197,22 @@ export default defineNuxtModule<ModuleOptions>({
     //   middleware: true,
     // })
 
-    addTypeTemplate({
+    addTemplate({
       filename: 'types/nuxt-galaxy.d.ts',
-      src: resolver.resolve('./runtime/types/index.ts'),
+      src: resolver.resolve('./runtime/types/nuxt-galaxy.d.ts'),
+      // src: resolver.resolve('./runtime/types/nuxt-galaxy.ts'),
     })
 
-    addTypeTemplate({
+    addTemplate({
       filename: 'types/supabase-database.d.ts',
-      src: resolver.resolve('./runtime/types/supabase.ts'),
+      src: resolver.resolve('./runtime/types/database.d.ts'),
+      // src: resolver.resolve('./runtime/types/database.ts'),
     })
+
+    // nuxt.hook('prepare:types', (opts) => {
+    //   opts.references.push({types})
+
+    // })
 
     // nuxt.options.alias['#galaxy'] = resolver.resolve('./runtime')
   },

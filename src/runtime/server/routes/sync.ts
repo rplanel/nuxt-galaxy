@@ -2,7 +2,7 @@ import type { SupabaseClient, User } from '@supabase/supabase-js'
 // import { createEventStream } from "h3";
 import { eq } from 'drizzle-orm'
 import { defineEventHandler } from 'h3'
-import type { Database } from '../../types/supabase'
+import type { Database } from '../../types/database'
 import { analyses } from '../db/schema/galaxy/analyses'
 import { useDrizzle } from '../utils/drizzle'
 import { synchronizeAnalyses } from '../utils/grizzle/analyses'

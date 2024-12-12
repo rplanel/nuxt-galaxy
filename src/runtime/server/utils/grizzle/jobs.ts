@@ -1,7 +1,7 @@
 import { GalaxyClient, JobTerminalStates, type JobState, type JobTerminalState } from '@rplanel/galaxy-js'
 import type { SupabaseClient } from '@supabase/supabase-js'
 import { eq, and } from 'drizzle-orm'
-import type { Database } from '../../../types/supabase'
+import type { Database } from '../../../types/database'
 import { useDrizzle } from '../drizzle'
 import { jobs } from '../../db/schema/galaxy/jobs'
 import { isOutputDatasetSync, synchronizeOutputDataset } from './datasets/output.js'

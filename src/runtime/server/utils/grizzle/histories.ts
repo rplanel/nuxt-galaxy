@@ -6,7 +6,7 @@ import { histories } from '../../db/schema/galaxy/histories'
 
 import { useDrizzle } from '../drizzle'
 import { analyses } from '../../db/schema/galaxy/analyses'
-import type { Database } from '../../../types/supabase'
+import type { Database } from '../../../types/database'
 import { analysisInputs } from '../../db/schema/galaxy/analysisInputs'
 import { datasets } from '../../db/schema/galaxy/datasets'
 import { getCurrentUser } from './user'
@@ -15,7 +15,7 @@ import { getOrCreateJob, isJobSync, synchronizeJob } from './jobs'
 import { synchronizeInputDataset } from './datasets/input'
 import { getInvocationOutputs } from './analyses'
 import { useRuntimeConfig } from '#imports'
-import type { HistoryWithAnalysisDB } from '~/src/runtime/types'
+import type { HistoryWithAnalysisDB } from '~/src/runtime/types/nuxt-galaxy'
 
 // const supabase = useSupabaseClient();
 

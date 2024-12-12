@@ -12,6 +12,7 @@
 </template>
 
 <script setup lang="ts">
+// import type { RolePermission, RoleType } from '
 import type { RolePermission, RoleType } from '#build/types/nuxt-galaxy'
 import { useFileSize } from '#imports'
 
