@@ -4,7 +4,7 @@ import type { HistoryState } from '@rplanel/galaxy-js'
 import { galaxy, galaxyItem, historyStateEnum } from '../galaxy'
 import { users as owners } from '../auth/users'
 import { users } from './users'
-import { analyses, type AnalysisDb } from './analyses'
+import { analyses } from './analyses'
 import { datasets } from './datasets'
 
 export const histories = galaxy.table('histories', {

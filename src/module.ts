@@ -1,4 +1,4 @@
-import { addImportsDir, addRouteMiddleware, addServerHandler, addServerImportsDir, addServerPlugin, addTypeTemplate, createResolver, defineNuxtModule, installModule, updateTemplates,
+import { addImportsDir, addRouteMiddleware, addServerHandler, addServerImportsDir, addServerPlugin, addTypeTemplate, createResolver, defineNuxtModule, installModule,
 } from '@nuxt/kit'
 import { defu } from 'defu'
 

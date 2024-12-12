@@ -2,7 +2,7 @@ import { DatasetsTerminalStates, GalaxyClient, type DatasetTerminalState, type H
 import type { SupabaseClient } from '@supabase/supabase-js'
 import { eq, and } from 'drizzle-orm'
 import { createError } from 'h3'
-import { histories, type HistoryWithAnalysisDB } from '../../db/schema/galaxy/histories'
+import { histories } from '../../db/schema/galaxy/histories'
 
 import { useDrizzle } from '../drizzle'
 import { analyses } from '../../db/schema/galaxy/analyses'
@@ -15,6 +15,7 @@ import { getOrCreateJob, isJobSync, synchronizeJob } from './jobs'
 import { synchronizeInputDataset } from './datasets/input'
 import { getInvocationOutputs } from './analyses'
 import { useRuntimeConfig } from '#imports'
+import type { HistoryWithAnalysisDB } from '~/src/runtime/types'
 
 // const supabase = useSupabaseClient();
 

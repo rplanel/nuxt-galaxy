@@ -11,6 +11,10 @@ import * as workflows from '../db/schema/galaxy/workflows.js'
 import * as analysisInputs from '../db/schema/galaxy/analysisInputs.js'
 import * as analysisOutputs from '../db/schema/galaxy/analysisOutputs.js'
 import * as uploadedDatasets from '../db/schema/galaxy/uploadedDatasets'
+import * as jobs from '../db/schema/galaxy/jobs'
+import * as rolePermissions from '../db/schema/galaxy/rolePermissions'
+import * as roles from '../db/schema/galaxy/roles'
+import * as userRoles from '../db/schema/galaxy/userRoles'
 
 export { and, eq, or, sql } from 'drizzle-orm'
 
@@ -31,6 +35,11 @@ export function useDrizzle() {
       ...analysisInputs,
       ...analysisOutputs,
       ...uploadedDatasets,
+      ...jobs,
+      ...rolePermissions,
+      ...roles,
+      ...userRoles,
+
     },
   })
 }
