@@ -70,6 +70,6 @@
     "vue-tsc": "^2.1.10"
   },
   "publishConfig": {
-    "registry": "https://gitlab.pasteur.fr/api/v4/projects/6436/packages/npm/"
+    "@rplanel:registry": "https://npm.pkg.github.com"
   }
 }
