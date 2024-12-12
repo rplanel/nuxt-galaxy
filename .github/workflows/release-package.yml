@@ -16,7 +16,8 @@ jobs:
         with:
           node-version: 21
       - run: npm install
-      - run: npm test
+      - run: npm run dev:prepare
+      - run: npm run prepack
 
   publish-gpr:
     needs: build
@@ -31,6 +32,8 @@ jobs:
           node-version: 21
           registry-url: https://npm.pkg.github.com/
       - run: npm install
+      - run: npm run dev:prepare
+      - run: npm run prepack
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
