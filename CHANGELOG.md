@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.0.3-alpha.4](https://github.com/rplanel/nuxt-galaxy/compare/v0.0.3-alpha.3...v0.0.3-alpha.4) (2024-12-12)
+
+### Bug Fixes
+
+* **types:** try to add template from dts ([9aace7b](https://github.com/rplanel/nuxt-galaxy/commit/9aace7bbaff3044aee0cd2bec289af63d76e2589))
+
 ## [0.0.3-alpha.3](https://github.com/rplanel/nuxt-galaxy/compare/v0.0.3-alpha.2...v0.0.3-alpha.3) (2024-12-12)
 
 ### Bug Fixes
