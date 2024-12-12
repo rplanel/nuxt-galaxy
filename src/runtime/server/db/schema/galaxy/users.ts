@@ -1,6 +1,5 @@
 import { integer, serial, unique, varchar } from 'drizzle-orm/pg-core'
 import { relations } from 'drizzle-orm'
-
 import { galaxy } from '../galaxy'
 import { instances } from './instances'
 import { workflows } from './workflows'
@@ -30,6 +29,3 @@ export const usersRelations = relations(users, ({ one, many }) => {
     histories: many(histories),
   }
 })
-
-export type User = typeof users.$inferSelect
-export type NewUser = typeof users.$inferInsert

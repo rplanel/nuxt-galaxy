@@ -99,5 +99,3 @@ export const datasetsToTagsRelations = relations(datasetsToTags, ({ one }) => {
     }),
   }
 })
-
-export type DatasetDb = typeof datasets.$inferSelect

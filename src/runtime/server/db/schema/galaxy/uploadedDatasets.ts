@@ -26,5 +26,3 @@ export const analysisOuputsRelations = relations(uploadedDatasets, ({ one }) => 
     }),
   }
 })
-
-export type UploadedDatasetDb = typeof uploadedDatasets.$inferSelect

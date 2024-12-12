@@ -2,14 +2,8 @@ import { integer, serial, unique } from 'drizzle-orm/pg-core'
 import { relations } from 'drizzle-orm'
 import { galaxy } from '../galaxy'
 import { roles } from './roles'
+import { RolePermissions, type RolePermission } from '~/src/runtime/types'
 
-const RolePermissions = [
-  'workflows.insert',
-  'workflows.delete',
-  'instances.insert',
-  'instances.delete',
-] as const
-export type RolePermission = typeof RolePermissions[number]
 export const rolePermissionsTypeEnum = galaxy.enum(
   'role_permissions_type',
   RolePermissions,

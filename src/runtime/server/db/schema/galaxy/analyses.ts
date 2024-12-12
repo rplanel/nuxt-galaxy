@@ -58,5 +58,3 @@ export const analysesRelations = relations(analyses, ({ one, many }) => {
     jobs: many(jobs),
   }
 })
-
-export type AnalysisDb = typeof analyses.$inferSelect

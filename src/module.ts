@@ -1,10 +1,7 @@
-import { addImportsDir, addRouteMiddleware, addServerHandler, addServerImportsDir, addServerPlugin, createResolver, defineNuxtModule, installModule,
+import { addImportsDir, addRouteMiddleware, addServerHandler, addServerImportsDir, addServerPlugin, addTypeTemplate, createResolver, defineNuxtModule, installModule, updateTemplates,
 } from '@nuxt/kit'
 import { defu } from 'defu'
 
-import type { RoleType } from './runtime/types'
-
-export type { RoleType }
 export interface ModuleOptions {
   url: string
   apiKey: string
@@ -21,14 +18,6 @@ declare module 'nuxt/schema' {
     }
   }
 }
-
-// declare module 'nuxt/schema' {
-//   interface PublicRuntimeConfig {
-//     galaxy: {
-//       url: string
-//     }
-//   }
-// }
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
@@ -207,5 +196,17 @@ export default defineNuxtModule<ModuleOptions>({
     //   handler: resolver.resolve('./runtime/server/middleware/galaxy'),
     //   middleware: true,
     // })
+
+    addTypeTemplate({
+      filename: 'types/nuxt-galaxy.d.ts',
+      src: resolver.resolve('./runtime/types/index.ts'),
+    })
+
+    addTypeTemplate({
+      filename: 'types/supabase-database.d.ts',
+      src: resolver.resolve('./runtime/types/supabase.ts'),
+    })
+
+    // nuxt.options.alias['#galaxy'] = resolver.resolve('./runtime')
   },
 })

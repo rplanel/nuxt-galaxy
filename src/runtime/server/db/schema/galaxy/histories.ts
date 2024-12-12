@@ -32,9 +32,3 @@ export const historiesRelations = relations(histories, ({ one, many }) => {
     datasets: many(datasets),
   }
 })
-
-export type HistoryDb = typeof histories.$inferSelect
-export interface HistoryWithAnalysisDB {
-  histories: HistoryDb
-  analyses: AnalysisDb
-}

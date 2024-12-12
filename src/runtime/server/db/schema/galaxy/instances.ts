@@ -19,6 +19,3 @@ export const instancesRelations = relations(instances, ({ many }) => {
     users: many(users),
   }
 })
-
-export type Instance = typeof instances.$inferSelect
-export type NewInstance = typeof instances.$inferInsert
