@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.0.3-alpha.3](https://github.com/rplanel/nuxt-galaxy/compare/v0.0.3-alpha.2...v0.0.3-alpha.3) (2024-12-12)
+
+### Bug Fixes
+
+* **drizzle:** add all table schema to drizzle client ([e9f89e9](https://github.com/rplanel/nuxt-galaxy/commit/e9f89e9e68d5a9e1160f9ab1ed4d7c711b4c966d))
+* remove authTokenName from supabase module options ([85a1804](https://github.com/rplanel/nuxt-galaxy/commit/85a1804ba699d8e5d934514e2c4a747fd7336dac))
+* **types:** add types defined in the module to '[#build](https://github.com/rplanel/nuxt-galaxy/issues/build)/types/nuxt-galaxy' ([a7d1c70](https://github.com/rplanel/nuxt-galaxy/commit/a7d1c703eeaf675e4f8813fb58b899865f5ab74a))
+* wrong import in drizzle schema ([989ab29](https://github.com/rplanel/nuxt-galaxy/commit/989ab29746e4883c342c38ca4f35f25cd0a43adb))
+
 ## [0.0.3-alpha.2](https://github.com/rplanel/nuxt-galaxy/compare/v0.0.3-alpha.1...v0.0.3-alpha.2) (2024-12-10)
 
 ### Bug Fixes
