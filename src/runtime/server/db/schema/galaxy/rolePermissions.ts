@@ -1,8 +1,8 @@
 import { integer, serial, unique } from 'drizzle-orm/pg-core'
 import { relations } from 'drizzle-orm'
 import { galaxy } from '../galaxy'
+import { RolePermissions, type RolePermission } from '../../../../types'
 import { roles } from './roles'
-import { RolePermissions, type RolePermission } from '~/src/runtime/types'
 
 export const rolePermissionsTypeEnum = galaxy.enum(
   'role_permissions_type',
