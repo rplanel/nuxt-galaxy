@@ -19,4 +19,6 @@ import { useFileSize } from '#imports'
 const { fileSize } = useFileSize(12545745452)
 const roleType: RoleType = 'user'
 const rolePermissions: RolePermission = 'instances.delete'
+
+// const { data } = await useFetch('/api/galaxy/t')
 </script>

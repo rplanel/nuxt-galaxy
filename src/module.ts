@@ -127,6 +127,11 @@ export default defineNuxtModule<ModuleOptions>({
       method: 'get',
     })
     addServerHandler({
+      route: '/api/galaxyinstance',
+      handler: resolver.resolve('./runtime/server/api/galaxy/instance.get'),
+
+    })
+    addServerHandler({
       route: '/api/galaxy/histories',
       handler: resolver.resolve('./runtime/server/api/galaxy/histories.get'),
       method: 'get',

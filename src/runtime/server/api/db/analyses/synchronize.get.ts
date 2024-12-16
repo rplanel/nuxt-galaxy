@@ -5,7 +5,7 @@ export default defineEventHandler(
   async (event) => {
     if (event.context?.supabase) {
       const { user: supabaseUser, client: supabaseClient } = event.context.supabase
-      return await synchronizeAnalyses(supabaseClient.id, supabaseUser.id)
+      return synchronizeAnalyses(supabaseClient.id, supabaseUser.id)
     }
   },
 )
