@@ -25,10 +25,11 @@ jobs:
       - name: Lint
         run: npm run lint
 
+      - name: Playground prepare
+        run: npm run dev:prepare
+
       - name: Test
         run: npm run test
-
+      
       - name: Publish
-        run: pnpx pkg-pr-new publish --compact --no-template --pnpm
-
-
+        run: npx pkg-pr-new publish --compact --no-template
