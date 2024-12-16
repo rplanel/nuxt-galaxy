@@ -37,6 +37,7 @@
     "supabase:db:reset": "pnpm supabase --workdir src/runtime db reset",
     "supabase:migration:new": "pnpm supabase --workdir src/runtime migration new",
     "supabase:migration:up": "pnpm supabase --workdir src/runtime migration up",
+    "supabase:generate:types": "pnpm supabase --workdir src/runtime gen types typescript --local > src/runtime/types/database.ts",
     "drizzle:generate": "pnpm drizzle-kit generate"
   },
   "dependencies": {

@@ -7,7 +7,7 @@ import { users as owners } from '../auth/users'
 export const uploadedDatasets = galaxy.table('uploaded_datasets', {
   id: serial('id').primaryKey(),
   ownerId: uuid('owner_id').notNull().references(() => owners.id, { onDelete: 'cascade' }),
-  name: text('name'),
+  name: text('name').notNull(),
   storageObjectId: uuid('storage_object_id').notNull().references(
     () => objects.id, { onDelete: 'cascade' },
   ).unique(),

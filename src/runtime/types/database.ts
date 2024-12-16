@@ -438,19 +438,19 @@ export type Database = {
       uploaded_datasets: {
         Row: {
           id: number
-          name: string | null
+          name: string
           owner_id: string
           storage_object_id: string
         }
         Insert: {
           id?: number
-          name?: string | null
+          name: string
           owner_id: string
           storage_object_id: string
         }
         Update: {
           id?: number
-          name?: string | null
+          name?: string
           owner_id?: string
           storage_object_id?: string
         }

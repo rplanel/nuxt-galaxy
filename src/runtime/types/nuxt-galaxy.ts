@@ -1,11 +1,4 @@
 import type { GalaxyToolParameters, WorkflowStep, HistoryState, InvocationState, JobState, Datamap, GalaxyWorkflowParameters } from '@rplanel/galaxy-js'
-// import type { RoleType } from '../server/db/schema/galaxy/roles'
-import type { users } from '../server/db/schema/galaxy/users'
-import type { uploadedDatasets } from '../server/db/schema/galaxy/uploadedDatasets'
-import type { instances } from '../server/db/schema/galaxy/instances'
-import type { histories } from '../server/db/schema/galaxy/histories'
-import type { analyses } from '../server/db/schema/galaxy/analyses'
-import type { datasets } from '../server/db/schema/galaxy/datasets'
 import type { Database } from './database'
 
 export interface WorkflowToolsParameters {
@@ -94,17 +87,17 @@ export const RolePermissions = [
   'instances.delete',
 ] as const
 export type RolePermission = typeof RolePermissions[number]
-export type AnalysisDb = typeof analyses.$inferSelect
 
-export type User = typeof users.$inferSelect
-export type NewUser = typeof users.$inferInsert
-export type UploadedDatasetDb = typeof uploadedDatasets.$inferSelect
-export type Instance = typeof instances.$inferSelect
-export type NewInstance = typeof instances.$inferInsert
-export type HistoryDb = typeof histories.$inferSelect
+// export type AnalysisDb = typeof analyses.$inferSelect
+// export type User = typeof users.$inferSelect
+// export type NewUser = typeof users.$inferInsert
+// export type UploadedDatasetDb = typeof uploadedDatasets.$inferSelect
+// export type Instance = typeof instances.$inferSelect
+// export type NewInstance = typeof instances.$inferInsert
+export type HistoryDb = Database['galaxy']['Tables']['histories']['Row']
+// export type DatasetDb = typeof datasets.$inferSelect
+
 export interface HistoryWithAnalysisDB {
   histories: HistoryDb
-  analyses: AnalysisDb
+  analyses: RowAnalysis
 }
-
-export type DatasetDb = typeof datasets.$inferSelect

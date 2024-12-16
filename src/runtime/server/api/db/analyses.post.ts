@@ -2,9 +2,9 @@ import type { GalaxyWorkflowInput } from '@rplanel/galaxy-js'
 import { defineEventHandler, readBody } from 'h3'
 import { getWorkflow } from '../../utils/grizzle/workflows'
 import { runAnalysis } from '../../utils/grizzle/analyses.js'
-import type { AnalysisBody } from '../../../types/serverApi'
 import { addHistory } from '../../utils/grizzle/histories'
 import { uploadDatasets } from '../../utils/grizzle/datasets'
+import type { AnalysisBody } from '#build/types/nuxt-galaxy'
 
 export default defineEventHandler<{ body: AnalysisBody }>(
   async (event) => {

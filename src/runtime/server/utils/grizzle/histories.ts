@@ -15,7 +15,6 @@ import { getOrCreateJob, isJobSync, synchronizeJob } from './jobs'
 import { synchronizeInputDataset } from './datasets/input'
 import { getInvocationOutputs } from './analyses'
 import { useRuntimeConfig } from '#imports'
-import type { HistoryWithAnalysisDB } from '~/src/runtime/types/nuxt-galaxy'
 
 // const supabase = useSupabaseClient();
 
@@ -77,12 +76,13 @@ export async function addHistory(name: string, ownerId: string) {
 export async function synchronizeHistory(historyId: number, ownerId: string, supabase: SupabaseClient<Database>) {
   const { public: { galaxy: { url } }, galaxy: { apiKey } } = useRuntimeConfig()
   const galaxyClient = GalaxyClient.getInstance(apiKey, url)
-  const historyDb: HistoryWithAnalysisDB = await useDrizzle()
+  const historyDb = await useDrizzle()
     .select()
     .from(histories)
     .innerJoin(analyses, eq(analyses.historyId, histories.id))
     .where(and(eq(histories.id, historyId), eq(histories.ownerId, ownerId)))
     .then(takeUniqueOrThrow)
+
   if (historyDb) {
     const isSync = await isHistorySync(historyId, historyDb.analyses.id, ownerId)
     if (isSync) {
