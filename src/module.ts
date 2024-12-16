@@ -204,7 +204,7 @@ export default defineNuxtModule<ModuleOptions>({
     })
 
     addTemplate({
-      filename: 'types/supabase-database.d.ts',
+      filename: 'types/database.d.ts',
       src: resolver.resolve('./runtime/types/database.d.ts'),
       // src: resolver.resolve('./runtime/types/database.ts'),
     })

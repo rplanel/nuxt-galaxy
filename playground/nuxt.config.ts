@@ -5,13 +5,11 @@ export default defineNuxtConfig({
   },
   devtools: { enabled: true },
   runtimeConfig: {
+    authTokenName: 'sb-127-auth-token',
     // public: {
     //   supabase: {
     //     url: 'http://localhost:54323', key: 'anno-key' },
     // },
-    supabase: {
-      authTokenName: 'sb-127-auth-token',
-    },
 
   },
   compatibilityDate: '2024-12-07',
