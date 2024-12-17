@@ -54,7 +54,7 @@ export const analysesRelations = relations(analyses, ({ one, many }) => {
       references: [histories.id],
     }),
     analysisInputs: many(analysisInputs),
-    analysisOuputs: many(analysisOuputs),
+    analysisOutputs: many(analysisOuputs),
     jobs: many(jobs),
   }
 })
