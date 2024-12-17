@@ -2,7 +2,7 @@ import type { SupabaseClient } from '@supabase/supabase-js'
 import { GalaxyClient } from '@rplanel/galaxy-js'
 import { eq, and } from 'drizzle-orm'
 import { datasets } from '../../../db/schema/galaxy/datasets'
-import { analysisOuputs } from '../../../db/schema/galaxy/analysisOutputs'
+import { analysisOutputs } from '../../../db/schema/galaxy/analysisOutputs'
 import { histories } from '../../../db/schema/galaxy/histories'
 import { useDrizzle } from '../../drizzle'
 import { takeUniqueOrThrow } from '../helper'
@@ -21,7 +21,7 @@ export async function getOrCreateOutputDataset(
   const datasetDb = await useDrizzle()
     .select()
     .from(datasets)
-    .innerJoin(analysisOuputs, eq(datasets.id, analysisOuputs.datasetId))
+    .innerJoin(analysisOutputs, eq(datasets.id, analysisOutputs.datasetId))
     .where(and(
       eq(datasets.galaxyId, galaxyDatasetId),
       eq(datasets.historyId, historyId),
@@ -76,7 +76,7 @@ export async function getOrCreateOutputDataset(
           .then(takeUniqueOrThrow)
           .then((datasetDb) => {
             if (datasetDb) return useDrizzle()
-              .insert(analysisOuputs)
+              .insert(analysisOutputs)
               .values({
                 analysisId,
                 datasetId: datasetDb.id,
@@ -118,10 +118,10 @@ export async function synchronizeOutputDataset(
       const galaxyDataset = await galaxyClient.datasets().getDataset(galaxyDatasetId, historyDb.galaxyId)
       if (datasetDb.state !== galaxyDataset.state) {
         await useDrizzle()
-          .update(analysisOuputs)
+          .update(analysisOutputs)
           .set({ state: galaxyDataset.state })
-          .where(eq(analysisOuputs.id, datasetDb.id))
-          .returning({ updatedId: analysisOuputs.id })
+          .where(eq(analysisOutputs.id, datasetDb.id))
+          .returning({ updatedId: analysisOutputs.id })
           .then(takeUniqueOrThrow)
       }
     }
@@ -130,14 +130,14 @@ export async function synchronizeOutputDataset(
 
 export async function isOutputDatasetSync(galaxyDatasetId: string, jobId: number, ownerId: string) {
   const datasetDb = await useDrizzle()
-    .select({ state: analysisOuputs.state })
-    .from(analysisOuputs)
-    .innerJoin(datasets, eq(datasets.id, analysisOuputs.datasetId))
+    .select({ state: analysisOutputs.state })
+    .from(analysisOutputs)
+    .innerJoin(datasets, eq(datasets.id, analysisOutputs.datasetId))
     .where(
       and(
         eq(datasets.galaxyId, galaxyDatasetId),
         eq(datasets.ownerId, ownerId),
-        eq(analysisOuputs.jobId, jobId),
+        eq(analysisOutputs.jobId, jobId),
       ),
     )
     .then(takeUniqueOrThrow)

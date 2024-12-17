@@ -118,7 +118,7 @@ export type Database = {
           },
         ]
       }
-      analysis_ouputs: {
+      analysis_outputs: {
         Row: {
           analysis_id: number
           dataset_id: number
@@ -142,28 +142,28 @@ export type Database = {
         }
         Relationships: [
           {
-            foreignKeyName: 'analysis_ouputs_analysis_id_analyses_id_fk'
+            foreignKeyName: 'analysis_outputs_analysis_id_analyses_id_fk'
             columns: ['analysis_id']
             isOneToOne: false
             referencedRelation: 'analyses'
             referencedColumns: ['id']
           },
           {
-            foreignKeyName: 'analysis_ouputs_dataset_id_datasets_id_fk'
+            foreignKeyName: 'analysis_outputs_dataset_id_datasets_id_fk'
             columns: ['dataset_id']
             isOneToOne: false
             referencedRelation: 'datasets'
             referencedColumns: ['id']
           },
           {
-            foreignKeyName: 'analysis_ouputs_dataset_id_datasets_id_fk'
+            foreignKeyName: 'analysis_outputs_dataset_id_datasets_id_fk'
             columns: ['dataset_id']
             isOneToOne: false
             referencedRelation: 'datasets_with_storage_path'
             referencedColumns: ['id']
           },
           {
-            foreignKeyName: 'analysis_ouputs_job_id_jobs_id_fk'
+            foreignKeyName: 'analysis_outputs_job_id_jobs_id_fk'
             columns: ['job_id']
             isOneToOne: false
             referencedRelation: 'jobs'

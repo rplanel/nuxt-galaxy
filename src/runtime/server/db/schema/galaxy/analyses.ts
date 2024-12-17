@@ -16,7 +16,7 @@ import { users as owners } from '../auth/users'
 import { histories } from './histories'
 import { workflows } from './workflows'
 import { analysisInputs } from './analysisInputs'
-import { analysisOuputs } from './analysisOutputs'
+import { analysisOutputs } from './analysisOutputs'
 import { jobs } from './jobs'
 
 export const analyses = galaxy.table('analyses', {
@@ -54,7 +54,7 @@ export const analysesRelations = relations(analyses, ({ one, many }) => {
       references: [histories.id],
     }),
     analysisInputs: many(analysisInputs),
-    analysisOutputs: many(analysisOuputs),
+    analysisOutputs: many(analysisOutputs),
     jobs: many(jobs),
   }
 })

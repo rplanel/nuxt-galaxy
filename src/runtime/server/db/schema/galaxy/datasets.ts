@@ -14,7 +14,7 @@ import { objects } from '../storage/objects'
 import { tags } from './tags'
 import { analysisInputs } from './analysisInputs'
 import { histories } from './histories'
-import { analysisOuputs } from './analysisOutputs'
+import { analysisOutputs } from './analysisOutputs'
 
 /**
  * Datasets
@@ -45,7 +45,7 @@ export const datasetsRelations = relations(datasets, ({ many, one }) => {
   return {
     datasetTags: many(datasetsToTags),
     analysisInput: one(analysisInputs),
-    analysisOuput: one(analysisOuputs),
+    analysisOuput: one(analysisOutputs),
     owner: one(owners, {
       fields: [datasets.ownerId],
       references: [owners.id],

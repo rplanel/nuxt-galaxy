@@ -6,7 +6,7 @@ import { datasets } from './datasets'
 import { analyses } from './analyses'
 import { jobs } from './jobs'
 
-export const analysisOuputs = galaxy.table('analysis_ouputs', {
+export const analysisOutputs = galaxy.table('analysis_outputs', {
   id: serial('id').primaryKey(),
   state: datasetStateEnum('state').$type<DatasetState>().notNull(),
   datasetId: integer('dataset_id').references(() => datasets.id, { onDelete: 'cascade' }).notNull(),
@@ -16,18 +16,18 @@ export const analysisOuputs = galaxy.table('analysis_ouputs', {
   unique: unique().on(t.datasetId, t.jobId),
 }))
 
-export const analysisOuputsRelations = relations(analysisOuputs, ({ one }) => {
+export const analysisOutputsRelations = relations(analysisOutputs, ({ one }) => {
   return {
     dataset: one(datasets, {
-      fields: [analysisOuputs.datasetId],
+      fields: [analysisOutputs.datasetId],
       references: [datasets.id],
     }),
     analysis: one(analyses, {
-      fields: [analysisOuputs.analysisId],
+      fields: [analysisOutputs.analysisId],
       references: [analyses.id],
     }),
     job: one(jobs, {
-      fields: [analysisOuputs.jobId],
+      fields: [analysisOutputs.jobId],
       references: [jobs.id],
     }),
   }

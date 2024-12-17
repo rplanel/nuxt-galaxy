@@ -8,7 +8,7 @@ export interface WorkflowToolsParameters {
 }
 export type RowAnalysis = Database['galaxy']['Tables']['analyses']['Row']
 export type RowAnalysisInput = Database['galaxy']['Tables']['analysis_inputs']['Row']
-export type RowAnalysisOutputs = Database['galaxy']['Tables']['analysis_ouputs']['Row']
+export type RowAnalysisOutputs = Database['galaxy']['Tables']['analysis_outputs']['Row']
 export type RowAnalysisJob = Database['galaxy']['Tables']['jobs']['Row']
 export type RowAnalaysisDataset = Database['galaxy']['Tables']['datasets']['Row']
 export interface AnalysisInputsWithDatasets extends RowAnalysisInput {
@@ -23,7 +23,7 @@ export interface AnalysisDetail extends RowAnalysis {
   histories: Database['galaxy']['Tables']['histories']['Row']
   jobs?: RowAnalysisJob[]
   analysis_inputs?: AnalysisInputsWithDatasets[]
-  analysis_ouputs?: AnalysisOutputsWithDatasets[]
+  analysis_outputs?: AnalysisOutputsWithDatasets[]
 }
 export interface Sync {
   isTerminalState: boolean
