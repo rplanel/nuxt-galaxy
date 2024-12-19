@@ -140,5 +140,7 @@ export async function isJobSync(jobId: number, datasetIds: string[] | undefined,
 }
 
 export function isJobTerminalState(state: JobState) {
-  return JobTerminalStates.includes(state as JobTerminalState)
+  // add state pause since event if not a terminal state, we want to stop the sync because user have no access to galaxy job
+  const additionalState: JobState[] = ['paused']
+  return [...additionalState, ...JobTerminalStates].includes(state as JobTerminalState)
 }
