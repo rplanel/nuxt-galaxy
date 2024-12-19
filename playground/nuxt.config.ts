@@ -5,7 +5,7 @@ export default defineNuxtConfig({
   },
   devtools: { enabled: true },
   runtimeConfig: {
-    authTokenName: 'sb-127-auth-token',
+    authTokenName: 'sb-eazhbrrdowqbzbbfjgxa-auth-token',
     // public: {
     //   supabase: {
     //     url: 'http://localhost:54323', key: 'anno-key' },
