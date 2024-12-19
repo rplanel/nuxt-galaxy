@@ -17,7 +17,7 @@ export async function uploadDatasets(
   return Promise.all(
     datasetEntries.map(([step, { name, storage_object_id: storageObjectId }]) => {
       const srcUrl
-                = 'https://dl.pasteur.fr/fop/C0UDRCyG/defense-finder-prot-sequences-input.fasta'
+                = 'https://dl.pasteur.fr/fop/WhYOEtav/ESCO001.0523.00075.prt'
       return galaxyClient.histories().uploadFile(
         galaxyHistoryId,
         srcUrl,
