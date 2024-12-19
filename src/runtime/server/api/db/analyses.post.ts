@@ -10,7 +10,7 @@ export default defineEventHandler<{ body: AnalysisBody }>(
   async (event) => {
     if (event.context?.supabase) {
       const { datamap, name, parameters, workflowId } = await readBody(event)
-      const { user: supabaseUser } = event.context.supabase
+      const { user: supabaseUser, client: supabase } = event.context.supabase
       const workflow = await getWorkflow(workflowId)
       // create galaxy history
       const historyDb = await addHistory(name, supabaseUser.id)
@@ -22,6 +22,7 @@ export default defineEventHandler<{ body: AnalysisBody }>(
           historyDb.galaxyId,
           historyDb.id,
           supabaseUser.id,
+          supabase,
         )
 
         // load input dataset sous la forme de datamap mais comme id pg id
