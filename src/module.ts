@@ -254,7 +254,6 @@ export default defineNuxtModule<ModuleOptions>({
       options.references.push({ path: resolver.resolve(nuxt.options.buildDir, 'types/nuxt-galaxy.d.ts') })
     })
 
-
     addTemplate({
       filename: 'types/database.d.ts',
       getContents: () => {
