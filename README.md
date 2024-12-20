@@ -29,6 +29,10 @@ My new Nuxt module for doing amazing things.
 
 ## Quick Setup
 
+
+
+
+
 Install the module to your Nuxt application with one command:
 
 ```bash
@@ -37,6 +41,22 @@ npx nuxi module add my-module
 
 That's it! You can now use My Module in your Nuxt app ✨
 
+### Start a local galaxy instance
+
+
+```bash
+docker run -d -p 9000:80 -p 8021:21 -p 8022:22 \
+  -e GALAXY_CONFIG_CONDA_AUTO_INIT=True \
+  -v ${HOME}/galaxy_storage/:/export/ \
+  -e GALAXY_CONFIG_ENABLE_MULLED_CONTAINERS=True \
+  quay.io/bgruening/galaxy
+```
+
+Restart Galaxy
+
+```bash
+docker exec <name-container> galaxyctl restart
+```
 
 ## Contribution
 
@@ -68,6 +88,8 @@ That's it! You can now use My Module in your Nuxt app ✨
   ```
 
 </details>
+
+
 
 
 <!-- Badges -->
