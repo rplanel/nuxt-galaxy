@@ -14,7 +14,7 @@ export default defineNuxtConfig({
   },
   compatibilityDate: '2024-12-07',
   supabase: {
-
+    types: '~/src/runtime/types/database.ts',
   },
 
 })
