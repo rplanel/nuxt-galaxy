@@ -41,6 +41,13 @@ export interface ModuleOptions {
    * @docs https://bioblend.readthedocs.io/en/latest/api_docs/galaxy/all.html#bioblend.galaxy.GalaxyInstance
    */
   email: string
+
+
+  /**
+   * Use local docker galaxy
+   */
+  localDocker: boolean
+
 }
 
 export default defineNuxtModule<ModuleOptions>({
@@ -60,6 +67,7 @@ export default defineNuxtModule<ModuleOptions>({
     url: process.env.GALAXY_URL || 'http://localhost:9000',
     apiKey: process.env.GALAXY_API_KEY || 'fakekey',
     email: process.env.GALAXY_EMAIL || 'admin@example.org',
+    localDocker: false,
 
   },
   // Shorthand sugar to register Nuxt hooks
@@ -97,6 +105,7 @@ export default defineNuxtModule<ModuleOptions>({
       {
         apiKey: moduleOptions.apiKey,
         email: moduleOptions.email,
+        localDocker: moduleOptions.localDocker,
       })
 
     // Make sure url and key are set
