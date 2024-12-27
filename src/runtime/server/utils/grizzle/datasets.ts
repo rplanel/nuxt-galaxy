@@ -1,13 +1,13 @@
 import { DatasetsTerminalStates, GalaxyClient } from '@rplanel/galaxy-js'
 import type { Datamap, DatasetState, DatasetTerminalState } from '@rplanel/galaxy-js'
 import type { SupabaseClient } from '@supabase/supabase-js'
+import { parseURL, stringifyParsedURL, withoutProtocol } from 'ufo'
 import { datasets } from '../../db/schema/galaxy/datasets.js'
 import { objects } from '../../db/schema/storage/objects.js'
 import { eq, useDrizzle } from '../drizzle.js'
 import { takeUniqueOrThrow } from './helper.js'
 import { useRuntimeConfig } from '#imports'
 import type { Database } from '~/src/runtime/types/database.js'
-import { parseURL, stringifyParsedURL, withoutProtocol } from 'ufo'
 
 export async function uploadDatasets(
   datamap: Datamap,
@@ -36,7 +36,7 @@ export async function uploadDatasets(
             const { signedUrl }
               = data
             let sanitizedSignedUrl = signedUrl
-            
+
             if (localDocker) {
               const parsedSignedUrl = parseURL(signedUrl)
               parsedSignedUrl.host = 'host.docker.internal'

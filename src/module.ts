@@ -42,7 +42,6 @@ export interface ModuleOptions {
    */
   email: string
 
-
   /**
    * Use local docker galaxy
    */
